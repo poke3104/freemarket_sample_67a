@@ -1,5 +1,5 @@
 # Freemarket_sample_67a DB設計
-## usersテーブル
+## userテーブル
 |Column|Type|Option|
 |------|----|------|
 |name|string|null: false,unique:true|
@@ -12,10 +12,9 @@
 |address|string|null: false|
 
 ### Association
-- has_many :items
-- has_many :photos
+- has_many :commodities
 
-## itemsテーブル
+## itemテーブル
 |Column|Type|Option|
 |------|----|------|
 |name|string|null:false|
@@ -26,12 +25,84 @@
 - belongs_to :user
 - has many:photos
 
-## photosテーブル
+## imageテーブル
 |Column|Type|Option|
 |------|----|------|
 |image|string||
 |user|references|null :false,foreign_key:true|
 |item|references|null :false,foreign_key:true|
 ## Association
-- belongs_to: item
+- belongs_to: commodities
 
+## evaluationテーブル
+|Column|Type|Option|
+|------|----|------|
+|evaluation|string|null:fales|
+|user|references|null :false,foreign_key:true|
+## Association
+- belongs_to: user
+
+## sales statusテーブル
+|Column|Type|Option|
+|------|----|------|
+|status|texit|null:fales|
+|commodity|references|null :false,foreign_key:true|
+## Association
+- has many:commodities
+
+## shipping areaテーブル
+|Column|Type|Option|
+|------|----|------|
+|area|texit|null:fales|
+|commodity|references|null :false,foreign_key:true|
+## Association
+- has many:comodities
+
+## categoryテーブル
+|Column|Type|Option|
+|------|----|------|
+|name|texit|null:fales|
+## Association
+- has many:users through:user_commodities
+
+## user_commodityテーブル
+|Column|Type|Option|
+|------|----|------|
+|user|texit|null:fales,foreign_key:true|
+|commodity|references|null :false,foreign_key:true|
+## Association
+- belongs_to: user
+- belongs_to: commodity
+
+## blandテーブル
+|Column|Type|Option|
+|------|----|------|
+|name|texit|null:fales|
+|commodity|references|null :false,foreign_key:true|
+## Association
+- has many:commodities
+
+## clothes sizeテーブル
+|Column|Type|Option|
+|------|----|------|
+|size|texit|null:fales|
+|commodity|references|null :false,foreign_key:true|
+## Association
+- has many: commodities
+
+## postageテーブル
+|Column|Type|Option|
+|------|----|------|
+|price|string|null:fales|
+|commodity|references|null :false,foreign_key:true|
+## Association
+- has many:commodities
+
+## likeテーブル
+|Column|Type|Option|
+|------|----|------|
+|user|references|null :false,foreign_key:true|
+|commodity|references|null :false,foreign_key:true|
+## Association
+- belongs_to:commodity
+- belongs_to:user
