@@ -1,0 +1,65 @@
+.header
+  .center-box
+    .center-box__top
+      =link_to "#", class: "image-link" do
+        =image_tag src="/assets/logo.svg", size: "140x40"
+      %form.text-form{:action => "#", :method => "get"}
+        %input.text-form__input{:type => "text", :placeholder => "キーワードから探す"}
+        %button.text-form__submit{:type => "submit"}
+          =icon('fa', 'search', class: "search-icon")
+    .center-box__bottom
+      %ul.left-contents
+        %ls.left-contents__item--first
+          =link_to "#", id: "category" do
+            カテゴリー
+          .tree-displayNone
+            %ul.category-type
+              %li.category-type__item
+                %a{href: "#", id: "1"}
+                  レディース
+              %li.category-type__item
+                %a{href: "#", id: "2"}
+                  メンズ
+              %li.category-type__item
+                %a{href: "#", id: "3"}
+                  ベビー・キッズ
+              %li.category-type__item
+                %a{href: "#", id: "4"}
+                  インテリア・住まい・小物
+              %li.category-type__item
+                %a{href: "#", id: "5"}
+                  本・音楽・ゲーム
+              %li.category-type__item
+                %a{href: "#", id: "6"}
+                  おもちゃ・ホビー・グッズ
+              %li.category-type__item
+                %a{href: "#", id: "7"}
+                  コスメ・香水・美容
+              %li.category-type__item
+                %a{href: "#", id: "8"}
+                  家電・スマホ・カメラ
+              %li.category-type__item
+                %a{href: "#", id: "9"}
+                  スポーツ・レジャー
+              %li.category-type__item
+                %a{href: "#", id: "10"}
+                  ハンドメイド
+              %li.category-type__item
+                %a{href: "#", id: "11"}
+                  チケット
+              %li.category-type__item
+                %a{href: "#", id: "12"}
+                  自転車・オートバイ
+              %li.category-type__item
+                %a{href: "#", id:"13"}
+                  その他
+        %ls.left-contents__item
+          =link_to "#", id: "brand" do
+            ブランド
+      %ul.right-contents
+        %ls.right-contents__item--login
+          =link_to "#", class: "list-link" do
+            ログイン
+        %ls.right-contents__item--new
+          =link_to "#", class: "list-link" do
+            新規会員登録

@@ -1,0 +1,188 @@
+.main-contents
+  .main-heading
+    .content
+      .content__title
+        %h1 人生を変えるフリマアプリ
+      .content__text
+        %p FURIMAはだれでもかんたんに出品・購入できる
+        %p フリマアプリです
+      .content__store-btn
+        %a{href: "#", class: "btn-app"}
+          =image_tag src="/assets/app-store.svg", size: "180x60"
+        %a{href: "#", class: "btn-google"}
+          =image_tag src="/assets/google-play.svg", size: "180x60"
+  .explanation-top
+    %h2.title
+      FURIMAが選ばれる3つの理由
+    %ul.lists
+      %li.list
+        .list__pict
+          =image_tag src="/assets/pict-reason-01.jpg", size: "300"
+          %span.number
+            1
+        %h3.list__title
+          %span 3分
+          ですぐに出品
+        %p.list__text
+          スマホで入力するだけで簡単に出品できる！
+      %li.list
+        .list__pict
+          =image_tag src="/assets/pict-reason-02.jpg", size: "300" 
+          %span.number
+            2
+        %h3.list__title
+          %span シンプル
+          で使いやすい
+        %p.list__text
+          めんどくさい入力は必要なく、検索も購入もスムーズ！
+      %li.list
+        .list__pict
+          =image_tag src="/assets/pict-reason-03.jpg", size: "300" 
+          %span.number
+            3
+        %h3.list__title
+          手数料
+          %span 業界最安
+        %p.list__text
+          最大3%でお得に出品&購入！
+  .explanation-center
+    .content
+      .content__title
+        会員数日本一位
+      .content__text
+        %p FURIMAは、フリマアプリで最も人気。
+        %p 出品・購入回数も業界最多です！
+        %p ほしかったあの商品に出会えるかもしれません。
+      .content__store-btn
+        %a{href: "#", class: "btn-app"}
+          =image_tag src="/assets/app-store.svg", size: "180x60"
+        %a{href: "#", class: "btn-google"}
+          =image_tag src="/assets/google-play.svg", size: "180x60"
+  .explanation-bottom
+    .explanation-bottom__title
+      FURIMAの特徴
+    .explanation-bottom__items
+      .item
+        =image_tag src="/assets/icon-1", class: "three-images"
+        %h3.item__title
+          簡単に売り買いできる
+        .item__text
+          %p スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
+      .item
+        =image_tag src="/assets/icon-3", class: "three-images"
+        %h3.item__title
+          売上金は即日振込みに対応
+        .item__text
+          %p 午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします!
+      .item
+        =image_tag src="/assets/icon-4", class: "three-images"
+        %h3.item__title
+          様々な支払いに対応
+        .item__text
+          %p お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
+  .pickup
+    %h3.pickup__title
+      ピックアップカテゴリー
+    .pickup__box
+      %a{href: "#", class: "pickup-link"}
+        %h3.pickup-head
+          新規投稿商品
+      .pickup-lists
+        %a{href: "#", class: "product-list"}
+          .product-list__image
+            =image_tag src="a004.png", class: "product-images"
+          .product-list__body
+            %h3.name 
+              product1
+            .details
+              %ul
+                %li
+                  30000円
+                %li
+                  =icon("fa", "star", class: "like-icon")
+                  0
+              %p
+                (税込)
+        %a{href: "#", class: "product-list"}
+          .product-list__image
+            =image_tag src="a007.png", class: "product-images"
+          .product-list__body
+            %h3.name
+              product2
+            .details
+              %ul
+                %li
+                  30000円
+                %li
+                  =icon("fa", "star", class: "like-icon")
+                  0
+              %p
+                (税込)
+        %a{href: "#", class: "product-list"}
+          .product-list__image
+            =image_tag src="a001.png", class: "product-images"
+          .product-list__body
+            %h3.name
+              product3
+            .details
+              %ul
+                %li
+                  30000円
+                %li
+                  =icon("fa", "star", class: "like-icon")
+                  0
+              %p
+                (税込)
+  .pickup
+    %h3.pickup__title
+      ピックアップブランド
+    .pickup__box
+      %a{href: "#", class: "pickup-link"}
+        %h3.pickup-head
+          アーカイバ
+      .pickup-lists
+        %a{href: "#", class: "product-list"}
+          .product-list__image
+            =image_tag src="a004.png", class: "product-images"
+          .product-list__body
+            %h3.name 
+              product1
+            .details
+              %ul
+                %li
+                  30000円
+                %li
+                  =icon("fa", "star", class: "like-icon")
+                  0
+              %p
+                (税込)
+        %a{href: "#", class: "product-list"}
+          .product-list__image
+            =image_tag src="a007.png", class: "product-images"
+          .product-list__body
+            %h3.name 
+              product2
+            .details
+              %ul
+                %li
+                  30000円
+                %li
+                  =icon("fa", "star", class: "like-icon")
+                  0
+              %p
+                (税込)
+        %a{href: "#", class: "product-list"}
+          .product-list__image
+            =image_tag src="a001.png", class: "product-images"
+          .product-list__body
+            %h3.name 
+              product3
+            .details
+              %ul
+                %li
+                  30000円
+                %li
+                  =icon("fa", "star", class: "like-icon")
+                  0
+              %p
+                (税込)
