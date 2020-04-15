@@ -5,7 +5,7 @@
     %p.text
       今すぐ無料ダウンロード！
     .store-btn
-      %a{href: "#", class: "btn-app"}
+      =link_to "#", class: "btn-app" do
         =image_tag src="/assets/app-store.svg", size: "180x60"
-      %a{href: "#", class:"btn-google"}
+      =link_to "#", class:"btn-google" do
         =image_tag src="/assets/google-play.svg", size: "180x60"

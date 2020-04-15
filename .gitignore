@@ -30,3 +30,5 @@
 config/secrets.yml
 # 画像がGithubにコミットされないようにする
 public/uploads/*
+
+.DS_Store
