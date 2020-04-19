@@ -10,10 +10,11 @@
 |address|string|null: false|
 
 ### Association
-- has_many :commodities
-- has_many :evaluations
-- has_many :likes
-- belongs_to:profile
+- has_many :commodities,dependent::delete_all
+- has_many :evaluations,dependent::delete_all
+- has_many :likes,dependent::delete_all
+- belongs_to:profile,dependent::delete
+- belongs_to:adress,dependent::delete
 
 ## commodityテーブル
 |Column|Type|Option|
@@ -21,18 +22,21 @@
 |name|string|null:false|
 |price|string|null: false|
 |user|references|null: false,foreign_key:true|
+|day_to_ship|string|null:false|
+|bland|string|null:false|
+|shipping_area|text|null:false|
+|shipping_method|text|null:false|
 
 ### Association
 - has many:categories throuth:commodity_category
-- has many:images
-- has many:likes
+- has many:images,dependent::delete_all
+- has many:likes,dependent::delete_all
 - belongs_to:user
-- belongs_to:sales status
-- belongs_to:shipping area
+- belongs_to:sales_status
 - belongs_to:bland
 - belongs_to:clothes size
 - belongs_to:postage
-- has many:comments
+- has many:comments,dependent::delete_all
 
 ## imageテーブル
 |Column|Type|Option|
@@ -58,14 +62,6 @@
 |commodity|references|null :false,foreign_key:true|
 ## Association
 - has many:commodities
-
-## shipping areaテーブル
-|Column|Type|Option|
-|------|----|------|
-|area|texit|null:fales|
-|commodity|references|null :false,foreign_key:true|
-## Association
-- has many:comodities
 
 ## categoryテーブル
 |Column|Type|Option|
@@ -133,6 +129,19 @@
 ## commentテーブル
 |Column|Type|Option|
 |------|----|------|
-|commodity|reference|null:fales,foreign key:true|
+|commodity|reference|null:fales,foreign_key:true|
 |user|reference|nullfales,foreign key:true|
 |text|text|null:fales|
+
+## adressテーブル
+|Column|Type|Option|
+|------|----|------|
+|user|string|null:false,foreign_key:true|
+|post_number|string|null:false|
+|city|text|null:false|
+|town|text|null:false|
+|building|text||
+|prefecture|text|null:false|
+
+## Association
+- belongs_to:user
