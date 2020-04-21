@@ -143,5 +143,5 @@
 |building|string||
 |prefecture|string|null:false|
 
-## Association
+## Associatio
 - belongs_to:user
