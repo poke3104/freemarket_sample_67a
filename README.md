@@ -7,14 +7,13 @@
 |password|string|null: false,unique:true|
 |exhibition_commodity|string|null:false,foreign_key:true|
 |purchase_commodity|string|null: false,foreign_key:true|
-|address|string|null: false|
 
 ### Association
 - has_many :commodities,dependent::delete_all
 - has_many :evaluations,dependent::delete_all
 - has_many :likes,dependent::delete_all
-- belongs_to:profile,dependent::delete
-- belongs_to:adress,dependent::delete
+- has_one:profile,dependent::delete
+- has_one:adress,dependent::delete
 
 ## commodityテーブル
 |Column|Type|Option|
@@ -23,7 +22,7 @@
 |price|string|null: false|
 |user|references|null: false,foreign_key:true|
 |day_to_ship|string|null:false|
-|bland|string|null:false|
+|brand|references|null:false,foreighn_key:true|
 |shipping_area|text|null:false|
 |shipping_method|text|null:false|
 
@@ -42,10 +41,9 @@
 |Column|Type|Option|
 |------|----|------|
 |image|string||
-|user|references|null :false,foreign_key:true|
-|item|references|null :false,foreign_key:true|
+|commodity|references|null :false,foreign_key:true|
 ## Association
-- belongs_to: commodities
+- belongs_to: commodity
 
 ## evaluationテーブル
 |Column|Type|Option|
@@ -58,7 +56,7 @@
 ## sales statusテーブル
 |Column|Type|Option|
 |------|----|------|
-|status|texit|null:fales|
+|status|text|null:fales|
 |commodity|references|null :false,foreign_key:true|
 ## Association
 - has many:commodities
@@ -66,14 +64,14 @@
 ## categoryテーブル
 |Column|Type|Option|
 |------|----|------|
-|name|texit|null:fales|
+|name|text|null:false|
 ## Association
 - has many:users through:user_commodities
 
 ## user_commodityテーブル
 |Column|Type|Option|
 |------|----|------|
-|user|texit|null:fales,foreign_key:true|
+|user|text|null:fales,foreign_key:true|
 |commodity|references|null :false,foreign_key:true|
 ## Association
 - belongs_to: user
@@ -82,15 +80,14 @@
 ## blandテーブル
 |Column|Type|Option|
 |------|----|------|
-|name|texit|null:fales|
-|commodity|references|null :false,foreign_key:true|
+|name|text|null:false|
 ## Association
 - has many:commodities
 
 ## clothes sizeテーブル
 |Column|Type|Option|
 |------|----|------|
-|size|texit|null:fales|
+|size|text|null:false|
 |commodity|references|null :false,foreign_key:true|
 ## Association
 - has many: commodities
@@ -98,7 +95,7 @@
 ## postageテーブル
 |Column|Type|Option|
 |------|----|------|
-|price|string|null:fales|
+|price|string|null:false|
 |commodity|references|null :false,foreign_key:true|
 ## Association
 - has many:commodities
@@ -115,33 +112,36 @@
 ## profileテーブル
 |Column|Type|Option|
 |------|----|------|
-|first_name|text|null:fales|
-|last_name|text|null:fales|
-|first_name_kana|text|null:fales|
-|last_name_kana|text|null:fales|
-|phone_number|string|null:fales|
-|year_birth_at|string|null:fale|
-|month_birth_at|string|null:fales|
-|day_birth_at|string|null:fales|
+|first_name|text|null:false|
+|last_name|text|null:false|
+|first_name_kana|text|null:false|
+|last_name_kana|text|null:false|
+|phone_number|string|null:false|
+|year_birth_at|string|null:false|
+|month_birth_at|string|null:false|
+|day_birth_at|string|null:false|
+|user|references|null:false,foreign_key:true|
 ## Association
 - belongs_to:user
 
 ## commentテーブル
 |Column|Type|Option|
 |------|----|------|
-|commodity|reference|null:fales,foreign_key:true|
-|user|reference|nullfales,foreign key:true|
-|text|text|null:fales|
+|commodity|reference|null:false,foreign_key:true|
+|user|reference|nullfalse,foreign key:true|
+|text|text|null:false|
+## Association
+- belongs_to:commodity
 
 ## adressテーブル
 |Column|Type|Option|
 |------|----|------|
-|user|string|null:false,foreign_key:true|
+|user|references|null:false,foreign_key:true|
 |post_number|string|null:false|
-|city|text|null:false|
-|town|text|null:false|
-|building|text||
-|prefecture|text|null:false|
+|city|string|null:false|
+|town|string|null:false|
+|building|string||
+|prefecture|string|null:false|
 
 ## Association
 - belongs_to:user
