@@ -1,0 +1,187 @@
+.main-background
+  .header
+    = render 'shared/header'
+  .main
+    .side
+      .side-vavi
+        .side-navi-list
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              マイページ
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              お知らせ
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              やることリスト
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              いいね！一覧
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              出品する
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              下書き一覧
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              出品した商品ー出品中
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              出品した商品ー取引中
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              出品した商品ー売却済み
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              購入した商品ー取引中
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              購入した商品ー過去の取引
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              ニュース一覧
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              評価一覧
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              ガイド
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              お問い合わせ
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+          .side-navi-list-content-title
+            メルペイ
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              売上・振り込み申請
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              ポイント
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+          .side-navi-list-content-title
+            設定
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              プロフィール
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              発送元・お届け先変更
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              支払い方法
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              メール/パスワード
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              本人情報
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              電話番号の確認
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+          .side-navi-list-content
+            .side-vaci-list-content-name
+              ログアウト
+            .side-vaci-list-content-icon
+            = icon('fas', 'chevron-right')
+
+
+    .contend-sub
+      .my_page-user-icon
+        .my_page-user-icon-img
+          %img(src="/assets/aaa.jpeg"height="200"width="700")
+          .my_page-user-icon-img-photo
+            %img(src="/assets/no_image_icon.png"height="60"width="60"class="user_icon")
+          .my_page-user-icon-img-photo-username
+            username
+          .my_page-user-icon-img-text
+            .my_page-user-icon-img-text-a
+              評価 
+              .my_page-user-icon-img-text-a-number
+                0
+            .my_page-user-icon-img-text-b
+              出品数 
+              .my_page-user-icon-img-text-b-number
+                0
+      .info-todo-box
+        .info-todo-box-info
+          お知らせ
+        .info-todo-box-todo
+          やることリスト
+      .tab-content
+        .mypage-item-link
+          .mypage-item-link-body
+            お知らせが表示されます
+            .mypage-item-link-body-time
+              .mypage-item-link-body-time-figure
+                = icon('far', 'clock')
+              .mypage-item-link-body-time-guide
+                ○○分前
+          .mypage-item-link-figure
+            %img(src="/assets/mercari_profile.png"width="48")
+          .mypage-item-link-arrow
+            = icon('fas', 'chevron-right')
+        .maypage-go-list
+          .maypage-go-list-text
+            一覧をみる
+      .mypage-tab-container
+        .mypage-tab-container-title
+          購入した商品
+        .torihiki-tab-box
+          .info-todo-box-info
+            取引中
+          .info-todo-box-todo
+            過去の取引
+        .tab-content
+          .tab-content-box
+            .tab-content-box-figure
+              %img(src="/assets/mercari_profile.png"width="120")
+            .tab-content-box-body
+              取引中の商品はありません
+  .footer
+    = render 'shared/footer'
