@@ -25,3 +25,10 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# secrets.ymlはAWSのアクセスキーを含むため、Githubコミットされないようにする
+config/secrets.yml
+# 画像がGithubにコミットされないようにする
+public/uploads/*
+
+.DS_Store
