@@ -35,7 +35,7 @@
 - belongs_to:bland
 - belongs_to:clothes size
 - belongs_to:postage
-- has many:comments,dependent::delete_all
+- has_many:comments,dependent::delete_all
 
 ## imageテーブル
 |Column|Type|Option|
@@ -59,14 +59,14 @@
 |status|text|null:fales|
 |commodity|references|null :false,foreign_key:true|
 ## Association
-- has many:commodities
+- has_many:commodities
 
 ## categoryテーブル
 |Column|Type|Option|
 |------|----|------|
 |name|text|null:false|
 ## Association
-- has many:users through:user_commodities
+- has_many:users through:user_commodities
 
 ## user_commodityテーブル
 |Column|Type|Option|
@@ -82,7 +82,7 @@
 |------|----|------|
 |name|text|null:false|
 ## Association
-- has many:commodities
+- has_many:commodities
 
 ## clothes sizeテーブル
 |Column|Type|Option|
@@ -90,7 +90,7 @@
 |size|text|null:false|
 |commodity|references|null :false,foreign_key:true|
 ## Association
-- has many: commodities
+- has_many: commodities
 
 ## postageテーブル
 |Column|Type|Option|
@@ -98,7 +98,7 @@
 |price|string|null:false|
 |commodity|references|null :false,foreign_key:true|
 ## Association
-- has many:commodities
+- has_many:commodities
 
 ## likeテーブル
 |Column|Type|Option|
@@ -143,5 +143,5 @@
 |building|string||
 |prefecture|string|null:false|
 
-## Associatio
+## Association
 - belongs_to:user
