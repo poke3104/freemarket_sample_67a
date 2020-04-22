@@ -20,18 +20,19 @@
             .payment-amount__price
               ¥20,000
           .point
-            %input{:type => "checkbox", :id => "check", :class => "point-checkbox", :name => "check"} 
-            %label(for="check")
-              %span.border-check
-            %span.explanatory-text
-              ポイントを使用 (所持ポイント: P23)
+            %label
+              %input{:type => "checkbox", :id => "check", :class => "point-checkbox", :name => "check"} 
+                %span.border-check
+                  =icon('fa', 'check')
+                %span.explanatory-text
+                  ポイントを使用 (所持ポイント: P23)
         .method-of-payment
           .inner-box
             %ul.inner-box__heading
               %li
                 %h3 支払い方法
               %li
-                =link_to "#" do
+                =link_to "#", class: "change-link" do
                   変更する
             .inner-box__user-card
               クレジットカード
@@ -46,7 +47,7 @@
             %li
               %h3 配送先
             %li
-              =link_to "#" do
+              =link_to "#", class: "change-link" do
                 変更する
           .shipping-address__address
             〒105-0011
