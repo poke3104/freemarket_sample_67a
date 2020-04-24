@@ -14,6 +14,7 @@
 - has_many :likes,dependent::delete_all
 - has_one:profile,dependent::delete
 - has_one:adress,dependent::delete
+- has_many :comments,dependent::delete
 
 ## commodityテーブル
 |Column|Type|Option|
@@ -90,7 +91,7 @@
 |size|text|null:false|
 |commodity|references|null :false,foreign_key:true|
 ## Association
-- has_many: commodities
+- belongs_to: commodity
 
 ## postageテーブル
 |Column|Type|Option|
@@ -132,6 +133,7 @@
 |text|text|null:false|
 ## Association
 - belongs_to:commodity
+- belongs_to:user
 
 ## adressテーブル
 |Column|Type|Option|
