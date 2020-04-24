@@ -1,0 +1,145 @@
+.main-contents
+  .exhibition-image
+    .exhibition-image__title
+      %ul
+        %li
+          出品画像
+        %li
+          必須
+    .exhibition-image__text
+      %p
+        最大10枚までアップロードできます
+    .exhibition-image__image-box
+      %ul.input-box
+        %li
+          =image_tag src=" ", class: "input-camera"
+        %p
+          ドラックアンドドロップ
+        %p
+          またはクリックしてファイルをアップロード
+  .item-content
+    .item-content__item-name
+      %ul.item-name-title
+        %li
+          商品名
+        %li
+          必須
+      %form.text-form{:action => "#", :method => "get"}
+        %input.text-form__input{:type => "text", :placeholder => "40文字まで"}
+    .item-content__item-explanation
+      %ul.explanation-title
+        %li
+          商品の説明
+        %li
+          必須
+      %form.text-form{:action => "#", :method => "get"}
+        %input.text-form__input{:type => "text", :placeholder => "商品の説明(必須1,000文字以内)"}
+      %p.text.counter
+        1/1000
+  .item-details
+    %p 商品の詳細
+    .item-details__category
+      %ul.category-title
+        %li
+          カテゴリー
+        %li
+          必須
+      %select{:name => "categoryId"}
+        %option{"aria-selected" => "true", :label => "選択してください", :selected => "", :value => ""} 選択してください
+    .item-details__brand
+      %ul.brand-title
+        %li
+          ブランド
+        %li
+          任意
+      %form.text-form{:action => "#", :method => "get"}
+        %input.text-form__input{:type => "text", :placeholder => "例)シャネル"}
+    .item-details__condition
+      %ul.condition-title
+        %li
+          商品の状態
+        %li
+          必須
+      %select{:name => "conditionId"}
+        %option{"aria-selected" => "true", :label => "選択してください", :selected => "", :value => ""} 選択してください
+  .delivery
+    %p 配送料について
+    %p
+      =link_to "#" do
+        ?
+    .delivery__shipping-payer
+      %ul.shipping-payer-title
+        %li
+          配送料の負担
+        %li
+          必須
+      %select{:name => "shipping-payerId"}
+        %option{"aria-selected" => "true", :label => "選択してください", :selected => "", :value => ""} 選択してください
+    .delivery__shipping-from-area
+      %ul.shipping-from-area-title
+        %li
+          発送元の地域
+        %li
+          必須
+      %select{:name => "shipping-from-areaId"}
+        %option{"aria-selected" => "true", :label => "選択してください", :selected => "", :value => ""} 選択してください
+    .delivery__shipping-days
+      %ul.shipping-days-title
+        %li
+          発送までの日数
+        %li
+          必須
+      %select{:name => "shipping-days"}
+        %option{"aria-selected" => "true", :label => "選択してください", :selected => "", :value => ""} 選択してください
+  .price-details
+    %p 価格（¥300〜9,999,999）
+    %p
+      =link_to "#" do
+        ?
+    .price-details__selling-price
+      %ul
+        %li
+          販売価格
+        %li
+          必須
+      %p ¥
+      %form.text-form{:action => "#", :method => "get"}
+        %input.text-form__input{:type => "text", :placeholder => "0"}
+    .price-details__fee
+      %p 販売手数料（10%)
+      %span.fee{"data-test" => "fee-value"} —
+    .price-details__profit
+      %p 販売利益
+      %span.fee{"data-test" => "fee-value"} —
+  .action-btn
+    %ul
+      %li
+        %input{:type => "submit", :value => "出品する"}
+      %li
+        %input{:type => "submit", :value => "下書きに保存する"}
+      %li
+        %p
+          =link_to "#" do
+            もどる
+  .Note
+    %p 禁止されている
+    %p 
+      =link_to "#" do
+        行為
+    および
+    %p 
+      =link_to "#" do
+        出品物
+    を必ずご確認ください。
+    %p 
+      =link_to "#" do
+        偽ブランド品
+    や
+    %p 
+      =link_to "#" do
+        盗品物
+    などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして
+    %p 
+      =link_to "#" do
+        加盟店規約
+    に同意したことになります。
