@@ -12,7 +12,7 @@
           %span ¥20,000
           %span.fee-details （税込）送料込み
     .payment-details
-      %form{:action => "#", :method => "post", :id => "buy-product-form", :class => "product-form"}
+      %form{action: "#", method: "post", id: "buy-product-form", class: "product-form"}
         .payment-amount-box
           .payment-amount
             .payment-amount__label
@@ -21,7 +21,7 @@
               ¥20,000
           .point
             %label
-              %input{:type => "checkbox", :id => "check", :class => "point-checkbox", :name => "check"} 
+              %input{type: "checkbox", id: "check", class: "point-checkbox", name: "check"} 
                 %span.border-check
                   =icon('fa', 'check')
                 %span.explanatory-text
@@ -56,5 +56,5 @@
             %br/
             中田 彰都
         .buy-button
-          %button{:type => "submit", :class => "buy-red-button"}
+          %button{type: "submit", class: "buy-red-button"}
             購入する
