@@ -135,7 +135,7 @@
 - belongs_to:commodity
 - belongs_to:user
 
-## adressテーブル
+## addressテーブル
 |Column|Type|Option|
 |------|----|------|
 |user|references|null:false,foreign_key:true|
