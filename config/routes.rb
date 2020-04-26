@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :users, only:[:index]
   resources :logout, only:[:index]
   resources :credit,only:[:index]
+  resources :confirmation_pages, only: [:index]
 end
