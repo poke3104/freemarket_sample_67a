@@ -1,2 +1,17 @@
 .footer-sub
-  メルカリ
+  .footer-sub__nav
+    %ul
+      %li
+        =link_to "#" do
+          プライバシーポリシー
+      %li
+        =link_to "#" do
+          FURIMA利用規約
+      %li
+        =link_to "#" do
+          特定商取引に関する表記
+  .footer-sub__logo
+    =link_to "#" do
+      =image_tag src="/assets/logo-footer.svg", class: "footer-sub-logo"
+  .footer-sub__logo-text
+    %p ©  FURIMA 
