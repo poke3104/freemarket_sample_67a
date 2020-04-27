@@ -5,8 +5,6 @@
 |nick_name|string|null: false,unique:true|
 |email|string|null: false|
 |password|string|null: false,unique:true|
-|exhibition_commodity|string|null:false,foreign_key:true|
-|purchase_commodity|string|null: false,foreign_key:true|
 
 ### Association
 - has_many :commodities,dependent::delete_all
@@ -15,6 +13,8 @@
 - has_one:profile,dependent::delete
 - has_one:adress,dependent::delete
 - has_many :comments,dependent::delete
+- has_many:exhibition_commodities
+- has_many:purchase_commodities
 
 ## commodityテーブル
 |Column|Type|Option|
