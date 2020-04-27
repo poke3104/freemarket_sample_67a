@@ -69,13 +69,13 @@
 ## Association
 - has_many:users through:user_commodities
 
-## user_commodityテーブル
+## commodity_categoryテーブル
 |Column|Type|Option|
 |------|----|------|
 |user|text|null:fales,foreign_key:true|
 |commodity|references|null :false,foreign_key:true|
 ## Association
-- belongs_to: user
+- belongs_to: category
 - belongs_to: commodity
 
 ## blandテーブル
@@ -144,6 +144,24 @@
 |town|string|null:false|
 |building|string||
 |prefecture|string|null:false|
+
+## Association
+- belongs_to:user
+
+## exhibition_commodityテーブル
+|Column|Type|Option|
+|------|----|------|
+|user|referense|foreign_key:true|
+|commodity|referense|foreign_key:true|
+
+## Association
+- belongs_to:user
+
+## purchase_commodityテーブル
+|Column|Type|Option|
+|------|----|------|
+|user|referense|foreign_key:true|
+|commodity|referense|foreign_key:true|
 
 ## Association
 - belongs_to:user
