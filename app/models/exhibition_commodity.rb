@@ -1,0 +1,2 @@
+class ExhibitionCommodity < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class PurchaseCommodity < ApplicationRecord
+end
