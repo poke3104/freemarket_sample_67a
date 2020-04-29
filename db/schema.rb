@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_29_030453) do
+ActiveRecord::Schema.define(version: 2020_04_29_054419) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "post_number", null: false
@@ -38,10 +38,8 @@ ActiveRecord::Schema.define(version: 2020_04_29_030453) do
 
   create_table "clothes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "size", null: false
-    t.bigint "commodity_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["commodity_id"], name: "index_clothes_on_commodity_id"
   end
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -62,7 +60,11 @@ ActiveRecord::Schema.define(version: 2020_04_29_030453) do
     t.bigint "brand_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "postage_id"
+    t.bigint "clothe_id"
     t.index ["brand_id"], name: "index_commodities_on_brand_id"
+    t.index ["clothe_id"], name: "index_commodities_on_clothe_id"
+    t.index ["postage_id"], name: "index_commodities_on_postage_id"
     t.index ["user_id"], name: "index_commodities_on_user_id"
   end
 
@@ -111,10 +113,8 @@ ActiveRecord::Schema.define(version: 2020_04_29_030453) do
 
   create_table "postages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "price", null: false
-    t.bigint "commodity_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["commodity_id"], name: "index_postages_on_commodity_id"
   end
 
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -143,10 +143,8 @@ ActiveRecord::Schema.define(version: 2020_04_29_030453) do
 
   create_table "sales_statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "status", null: false
-    t.bigint "commodity_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["commodity_id"], name: "index_sales_statuses_on_commodity_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -164,10 +162,11 @@ ActiveRecord::Schema.define(version: 2020_04_29_030453) do
   end
 
   add_foreign_key "addresses", "users"
-  add_foreign_key "clothes", "commodities"
   add_foreign_key "comments", "commodities"
   add_foreign_key "comments", "users"
   add_foreign_key "commodities", "brands"
+  add_foreign_key "commodities", "clothes"
+  add_foreign_key "commodities", "postages"
   add_foreign_key "commodities", "users"
   add_foreign_key "evaluations", "users"
   add_foreign_key "exhibition_commodities", "commodities"
@@ -175,9 +174,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_030453) do
   add_foreign_key "images", "commodities"
   add_foreign_key "likes", "commodities"
   add_foreign_key "likes", "users"
-  add_foreign_key "postages", "commodities"
   add_foreign_key "profiles", "users"
   add_foreign_key "purchase_commodities", "commodities"
   add_foreign_key "purchase_commodities", "users"
-  add_foreign_key "sales_statuses", "commodities"
 end
