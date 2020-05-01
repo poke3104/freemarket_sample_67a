@@ -12,9 +12,15 @@
 - has_many :commodities,dependent::delete_all
 - has_many :evaluations,dependent::delete_all
 - has_many :likes,dependent::delete_all
-- has_one:profile,dependent::delete
-- has_one:adress,dependent::delete
-- has_many :comments,dependent::delete
+- has_many :commodities, through: :likes
+- has_many :comments,    dependent: :delete_all
+- has_many :commodities, through: :comments
+- has_many :exhibition_commodities, dependent: :delete_all
+- has_many :commodities, through: :exhibition_commodities
+- has_many :purchase_commodities, dependent: :delete_all
+- has_many :commodities, through: :purchase_commodities
+- has_one :address, dependent: :delete
+- has_one :profile, dependent: :delete
 
 ## commodityテーブル
 |Column|Type|Option|
@@ -26,6 +32,13 @@
 |brand|references|null:false,foreighn_key:true|
 |shipping_area|text|null:false|
 |shipping_method|text|null:false|
+|text|text||
+|condition|string||
+|exhibition_commodity|references|foreign_key:true|
+|parchase_commodity|references|foreign_key:true|
+|sales_status|references|foreign_key:true|
+|postage|references|foreign_key:true|
+|clothe|references|foreign_key:true|
 
 ### Association
 - has many:categories throuth:commodity_category
@@ -58,7 +71,6 @@
 |Column|Type|Option|
 |------|----|------|
 |status|text|null:fales|
-|commodity|references|null :false,foreign_key:true|
 ## Association
 - has_many:commodities
 
@@ -69,27 +81,26 @@
 ## Association
 - has_many:users through:user_commodities
 
-## user_commodityテーブル
+## commodity_categoryテーブル
 |Column|Type|Option|
 |------|----|------|
-|user|text|null:fales,foreign_key:true|
+|category|text|null:fales,foreign_key:true|
 |commodity|references|null :false,foreign_key:true|
 ## Association
 - belongs_to: user
 - belongs_to: commodity
 
-## blandテーブル
+## brandテーブル
 |Column|Type|Option|
 |------|----|------|
 |name|text|null:false|
 ## Association
 - has_many:commodities
 
-## clothes sizeテーブル
+## clotheテーブル
 |Column|Type|Option|
 |------|----|------|
 |size|text|null:false|
-|commodity|references|null :false,foreign_key:true|
 ## Association
 - belongs_to: commodity
 
@@ -97,7 +108,6 @@
 |Column|Type|Option|
 |------|----|------|
 |price|string|null:false|
-|commodity|references|null :false,foreign_key:true|
 ## Association
 - has_many:commodities
 
@@ -147,3 +157,11 @@
 
 ## Association
 - belongs_to:user
+
+## shipping_chargeテーブル
+|Column|Type|Option|
+|------|----|------|
+|who|string|null:false|
+
+## Association
+- has_many:commodities
