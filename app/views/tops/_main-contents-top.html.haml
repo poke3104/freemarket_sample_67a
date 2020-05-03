@@ -88,51 +88,8 @@
         %h3.pickup-head
           新規投稿商品
       .pickup-lists
-        =link_to detail_pages_path, class: "product-list" do
-          .product-list__image
-            =image_tag src="a004.png", class: "product-images"
-          .product-list__body
-            %h3.name 
-              product1
-            .details
-              %ul
-                %li
-                  30000円
-                %li
-                  =icon("fa", "star", class: "like-icon")
-                  0
-              %p
-                (税込)
-        =link_to detail_pages_path, class: "product-list" do
-          .product-list__image
-            =image_tag src="a007.png", class: "product-images"
-          .product-list__body
-            %h3.name
-              product2
-            .details
-              %ul
-                %li
-                  30000円
-                %li
-                  =icon("fa", "star", class: "like-icon")
-                  0
-              %p
-                (税込)
-        =link_to detail_pages_path, class: "product-list" do
-          .product-list__image
-            =image_tag src="a001.png", class: "product-images"
-          .product-list__body
-            %h3.name
-              product3
-            .details
-              %ul
-                %li
-                  30000円
-                %li
-                  =icon("fa", "star", class: "like-icon")
-                  0
-              %p
-                (税込)
+        - @last_commodities.each do |commodity|
+          = render partial: 'category-commodity', locals: {commodity: commodity}
   .pickup
     %h3.pickup__title
       ピックアップブランド
@@ -141,48 +98,5 @@
         %h3.pickup-head
           アーカイバ
       .pickup-lists
-        =link_to detail_pages_path, class: "product-list" do
-          .product-list__image
-            =image_tag src="a004.png", class: "product-images"
-          .product-list__body
-            %h3.name 
-              product1
-            .details
-              %ul
-                %li
-                  30000円
-                %li
-                  =icon("fa", "star", class: "like-icon")
-                  0
-              %p
-                (税込)
-        =link_to detail_pages_path, class: "product-list" do
-          .product-list__image
-            =image_tag src="a007.png", class: "product-images"
-          .product-list__body
-            %h3.name 
-              product2
-            .details
-              %ul
-                %li
-                  30000円
-                %li
-                  =icon("fa", "star", class: "like-icon")
-                  0
-              %p
-                (税込)
-        =link_to detail_pages_path, class: "product-list" do
-          .product-list__image
-            =image_tag src="a001.png", class: "product-images"
-          .product-list__body
-            %h3.name 
-              product3
-            .details
-              %ul
-                %li
-                  30000円
-                %li
-                  =icon("fa", "star", class: "like-icon")
-                  0
-              %p
-                (税込)
+        - @last_commodities.each do |commodity|
+          = render partial: 'brand-commodity', locals: {commodity: commodity}
