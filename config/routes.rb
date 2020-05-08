@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :logout, only:[:index]
   resources :credit,only:[:index]
   resources :confirmation_pages, only: [:index]
+  resources :sighup_pages, only:[:index]
 end
