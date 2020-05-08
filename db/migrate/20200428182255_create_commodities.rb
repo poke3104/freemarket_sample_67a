@@ -5,6 +5,7 @@ class CreateCommodities < ActiveRecord::Migration[5.2]
       t.string :price,           null: false
       t.text :text,              null: false
       t.string :condition,       null: false
+      t.string :day_to_ship,     null: false
       t.string :shipping_area,   null: false
       t.string :shipping_method, null: false
       # t.references :exhibition_commodity, null: false, foreign_key: true

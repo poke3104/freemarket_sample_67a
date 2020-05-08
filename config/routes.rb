@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
+  # devise_for :users
   root "tops#index"
 
-  resources :exhibition, only:[:index]
+  resources :exhibition, only:[:index, :new, :create]
   resources :detail_pages, only: [:index]
   resources :users, only:[:index]
   resources :logout, only:[:index]
