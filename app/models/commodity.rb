@@ -16,10 +16,9 @@ class Commodity < ApplicationRecord
   belongs_to :exhibition_commodities, class_name: "User"
   belongs_to :purchase_commodities, class_name: "User"
 
-  accepts_nested_attributes_for :image, allow_destroy: true
-  accepts_nested_attributes_for :categories, allow_destroy: true
   accepts_nested_attributes_for :brand, allow_destroy: true
   accepts_nested_attributes_for :shipping_chaege, allow_destroy: true
+  accepts_nested_attributes_for :clothe, allow_destroy: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
