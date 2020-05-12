@@ -35,6 +35,12 @@ ActiveRecord::Schema.define(version: 2020_05_08_112522) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "clothes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "size", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "commodity_id", null: false
@@ -48,7 +54,6 @@ ActiveRecord::Schema.define(version: 2020_05_08_112522) do
     t.string "name", null: false
     t.string "price", null: false
     t.text "text", null: false
-    t.string "clothe"
     t.string "condition", null: false
     t.string "day_to_ship", null: false
     t.string "shipping_method", null: false
@@ -56,11 +61,13 @@ ActiveRecord::Schema.define(version: 2020_05_08_112522) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "postage_id"
+    t.bigint "clothe_id"
     t.bigint "sales_status_id"
     t.bigint "exhibition_commodity_id"
     t.bigint "purchase_commodity_id"
     t.bigint "shipping_charge_id"
     t.index ["brand_id"], name: "index_commodities_on_brand_id"
+    t.index ["clothe_id"], name: "index_commodities_on_clothe_id"
     t.index ["exhibition_commodity_id"], name: "index_commodities_on_exhibition_commodity_id"
     t.index ["postage_id"], name: "index_commodities_on_postage_id"
     t.index ["purchase_commodity_id"], name: "index_commodities_on_purchase_commodity_id"
@@ -153,6 +160,7 @@ ActiveRecord::Schema.define(version: 2020_05_08_112522) do
   add_foreign_key "comments", "commodities"
   add_foreign_key "comments", "users"
   add_foreign_key "commodities", "brands"
+  add_foreign_key "commodities", "clothes"
   add_foreign_key "commodities", "postages"
   add_foreign_key "commodities", "sales_statuses"
   add_foreign_key "commodities", "shipping_charges"
