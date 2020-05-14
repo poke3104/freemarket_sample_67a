@@ -1,22 +1,20 @@
 .single-container
   .single-header
-    %h1
-      %a{:href => "＃"}
-        %img{:alt => "フリマ", :src => "/assets/logo-d3d78326971d78b06e3d6f0ba666d025a8ad681286b4d9e00e7dbe8673bcfd23.svg"}/
+    =link_to "#" do
+      =image_tag "/assets/logo.svg", class: "logo-image"
   .single-main
     .login-panel
       .login-no-account
         .no-account-user アカウントをお持ちでない方はこちら
-        %a{:href => "＃",class:"sighup"} 新規会員登録
+        %a{ href: "＃",class:"sighup"} 新規会員登録
       .login-form-inner
-      %form{:action => "＃/", :method => "POST", :novalidate => "novalidate"}
+      %form{action: "＃/", method: "POST", novalidate: "novalidate"}
         .login-form-inner
           .form-group
-            %input.login-input-text.input-default{:name => "email", :placeholder => "メールアドレス", :type => "email", :value => ""}/
+            %input.login-input-text.input-default{name: "email", placeholder: "メールアドレス", type:"email", value: ""}/
           .form-group
-            %input.login-input-text.input-default{:name => "password", :placeholder => "パスワード", :type => "password"}/
-          %button.login-submit.btn-default.btn-red{:type => "submit"} ログイン
-          %input{:name => "login_callback", :type => "hidden", :value => "/jp/"}/
-          %input{:name => "__csrf_value", :type => "hidden", :value => "#"}/
-          %a{:href => "＃", class:"forget-password"} パスワードをお忘れの方
-  = render 'shared/footer'
+            %input.login-input-text.input-default{name: "password", placeholder: "パスワード", type:"password"}/
+          %button.login-submit.btn-default.btn-red{type: "submit"} ログイン
+          %input{name: "login_callback", type: "hidden", value: "/jp/"}/
+          %input{name:"__csrf_value",type:"hidden", value:"5c31e59c297af778ce096e4dfd13c5a38ada5009dd3b58248a4e34528f1cff63af5c8877db3f7f703f07d171026880092471b7f6e8a54b9491879644fd2007862"}/
+          %a{href:"＃", class:"forget-password"} パスワードをお忘れの方
