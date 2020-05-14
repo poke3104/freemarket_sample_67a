@@ -1,0 +1,25 @@
+.sighup-header
+  .header-sighup
+    =link_to "#" do
+      =image_tag "/assets/logo.svg", class: "logo-image"
+  %nav.development-bar
+    %ul.clearfix
+      %li.active
+        会員情報
+        .circle
+      %li.active
+        電話番号認証
+        .circle
+      %li.active--red
+        完了
+        .circle
+        .progress-status
+.main.single-main
+  .l-single-container.signup-done
+    .single-head.registration 会員登録完了
+    .single-inner.registration-form
+      .single-content
+        .thankyou ありがとうございます。会員登録が完了しました。
+        .btn-default.btn-red{:href => "#"}
+          フリマをはじめる
+= render 'shared/footer'

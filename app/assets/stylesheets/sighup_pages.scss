@@ -22,30 +22,25 @@
       display: flex; 
       .active{
         .circle{
-          width: 15px;
-          height: 15px;
-          border-radius: 50%;
-          background-color: blue;
-          margin: 0 auto;
-          margin-top: 5px;
+        width: 12px;
+        height: 12px;
+        margin: 8px auto 0;
+        background: #ccc;
+        border-radius: 50%;        }
+        margin-right: 5px;
         }
-       margin-right: 5px;
-       &--red{
-         color: red;
-         margin-right: 5px;
-         .circle{
-          width: 15px;
-          height: 15px;
+         .circle2{
+          width: 12px;
+          height: 12px;
           border-radius: 50%;
-          background-color:red;
+          background-color:#3CCACE;;
           margin: 0 auto;
           margin-top: 5px;
          }
        }
       }
     }
-  }
-}
+
 
 .sighup-main { 
   color: #333333; 
@@ -67,17 +62,18 @@
 
   }
     .sighup-main-head {
-      color: #333333; 
+      background-color: #ffffff;
+      color: #333333;
+      font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
       font-size: 22px;
       font-weight: 700;
-      height: 97px;
-      line-height: 33px;
-      margin: 0px;
-      padding: 32px;
-      width: 700px;
-      text-align: center;
+      height: 95px;
       line-height: 100px;
-      // padding: 20px 40px ;
+      margin: 0px 330px;
+      padding: 40px 40px 64px;
+      width: 700p;
+      text-align: center;
+      margin: auto;
     }
 }
 
@@ -232,7 +228,7 @@
 }
 
 .btn-red{
-  background-color: #e62017; 
+  background-color:#3CCACE; 
   color: #ffffff; 
   font-family: "Source Sans Pro", Helvetica, Arial, æ¸¸ã‚´ã‚·ãƒƒã‚¯ä½“, YuGothic, ãƒ¡ã‚¤ãƒªã‚ª, Meiryo, sans-serif;
   font-size: 14px;
