@@ -8,16 +8,16 @@
         %p フリマアプリです
       .content__store-btn
         =link_to "#", class: "btn-app" do
-          =image_tag src="/assets/app-store.svg", size: "180x60"
+          =image_tag src="app-store.svg", size: "180x60"
         =link_to "#", class: "btn-google" do
-          =image_tag src="/assets/google-play.svg", size: "180x60"
+          =image_tag src="google-play.svg", size: "180x60"
   .explanation-top
     %h2.title
       FURIMAが選ばれる3つの理由
     %ul.lists
       %li.list
         .list__pict
-          =image_tag src="/assets/pict-reason-01.jpg", size: "300"
+          =image_tag src="pict-reason-01.jpg", size: "300"
           %span.number
             1
         %h3.list__title
@@ -27,7 +27,7 @@
           スマホで入力するだけで簡単に出品できる！
       %li.list
         .list__pict
-          =image_tag src="/assets/pict-reason-02.jpg", size: "300" 
+          =image_tag src="pict-reason-02.jpg", size: "300" 
           %span.number
             2
         %h3.list__title
@@ -37,7 +37,7 @@
           めんどくさい入力は必要なく、検索も購入もスムーズ！
       %li.list
         .list__pict
-          =image_tag src="/assets/pict-reason-03.jpg", size: "300" 
+          =image_tag src="pict-reason-03.jpg", size: "300" 
           %span.number
             3
         %h3.list__title
@@ -55,27 +55,27 @@
         %p ほしかったあの商品に出会えるかもしれません。
       .content__store-btn
         =link_to "#", class: "btn-app" do
-          =image_tag src="/assets/app-store.svg", size: "180x60"
+          =image_tag src="app-store.svg", size: "180x60"
         =link_to "#", class: "btn-google" do
-          =image_tag src="/assets/google-play.svg", size: "180x60"
+          =image_tag src="google-play.svg", size: "180x60"
   .explanation-bottom
     .explanation-bottom__title
       FURIMAの特徴
     .explanation-bottom__items
       .item
-        =image_tag src="/assets/icon-1", class: "three-images"
+        =image_tag src="icon-1.svg", class: "three-images"
         %h3.item__title
           簡単に売り買いできる
         .item__text
           %p スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
       .item
-        =image_tag src="/assets/icon-3", class: "three-images"
+        =image_tag src="icon-3.svg", class: "three-images"
         %h3.item__title
           売上金は即日振込みに対応
         .item__text
           %p 午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします!
       .item
-        =image_tag src="/assets/icon-4", class: "three-images"
+        =image_tag src="icon-4.svg", class: "three-images"
         %h3.item__title
           様々な支払いに対応
         .item__text
@@ -88,51 +88,8 @@
         %h3.pickup-head
           新規投稿商品
       .pickup-lists
-        =link_to detail_pages_path, class: "product-list" do
-          .product-list__image
-            =image_tag src="a004.png", class: "product-images"
-          .product-list__body
-            %h3.name 
-              product1
-            .details
-              %ul
-                %li
-                  30000円
-                %li
-                  =icon("fa", "star", class: "like-icon")
-                  0
-              %p
-                (税込)
-        =link_to detail_pages_path, class: "product-list" do
-          .product-list__image
-            =image_tag src="a007.png", class: "product-images"
-          .product-list__body
-            %h3.name
-              product2
-            .details
-              %ul
-                %li
-                  30000円
-                %li
-                  =icon("fa", "star", class: "like-icon")
-                  0
-              %p
-                (税込)
-        =link_to detail_pages_path, class: "product-list" do
-          .product-list__image
-            =image_tag src="a001.png", class: "product-images"
-          .product-list__body
-            %h3.name
-              product3
-            .details
-              %ul
-                %li
-                  30000円
-                %li
-                  =icon("fa", "star", class: "like-icon")
-                  0
-              %p
-                (税込)
+        - @last_commodities.each do |commodity|
+          = render partial: 'category-commodity', locals: {commodity: commodity}
   .pickup
     %h3.pickup__title
       ピックアップブランド
@@ -141,48 +98,5 @@
         %h3.pickup-head
           アーカイバ
       .pickup-lists
-        =link_to detail_pages_path, class: "product-list" do
-          .product-list__image
-            =image_tag src="a004.png", class: "product-images"
-          .product-list__body
-            %h3.name 
-              product1
-            .details
-              %ul
-                %li
-                  30000円
-                %li
-                  =icon("fa", "star", class: "like-icon")
-                  0
-              %p
-                (税込)
-        =link_to detail_pages_path, class: "product-list" do
-          .product-list__image
-            =image_tag src="a007.png", class: "product-images"
-          .product-list__body
-            %h3.name 
-              product2
-            .details
-              %ul
-                %li
-                  30000円
-                %li
-                  =icon("fa", "star", class: "like-icon")
-                  0
-              %p
-                (税込)
-        =link_to detail_pages_path, class: "product-list" do
-          .product-list__image
-            =image_tag src="a001.png", class: "product-images"
-          .product-list__body
-            %h3.name 
-              product3
-            .details
-              %ul
-                %li
-                  30000円
-                %li
-                  =icon("fa", "star", class: "like-icon")
-                  0
-              %p
-                (税込)
+        - @last_commodities.each do |commodity|
+          = render partial: 'brand-commodity', locals: {commodity: commodity}

@@ -32,14 +32,14 @@
         .product-box__images
           %ul
             %li
-              =image_tag src="/assets/a004.png", class: "main-image"
+              =image_tag src="a004.png", class: "main-image"
             %ul
               %li
-                =image_tag src="/assets/a004.png", class: "sub-images", size: "140"
+                =image_tag src="a004.png", class: "sub-images", size: "140"
               %li
-                =image_tag src="/assets/a001.png", class: "sub-images", size: "140"
+                =image_tag src="a001.png", class: "sub-images", size: "140"
               %li
-                =image_tag src="/assets/a007.png", class: "sub-images", size: "140"
+                =image_tag src="a007.png", class: "sub-images", size: "140"
         .product-box__price
           .product-price
             ¥20000
@@ -70,6 +70,7 @@
               %tr
                 %th 商品のサイズ
                 %td
+                  =@commodity_detail.clothe.size
               %tr
                 %th 商品の状態
                 %td 新品/未使用
