@@ -13,7 +13,7 @@
       .exhibition-image__image-box
         .exhibition-image__image-box__image-box2
           .exhibition-image__image-box__image-box2__image-box3
-            %ul.input-box
+            %ul.preview
               %input.input-file{accept: "image/png,image/jpeg", autocomplete: "off", multiple: "", style: "display:none", tabindex: "-1", type: "file"}/
               %li
                 =icon("fa", "camera", class: "camera")
@@ -31,15 +31,19 @@
           %li.required
             必須
         .item-content__item-name__text-box
-          %form.text-form{action: "#", method: "get"}
-            %input.text-form__input{type: "text", placeholder: "40文字まで"}
+          = form_with model: @commodity, class: "text-form", local: true do |f|
+            = form.text_field :title, placeholder: :40文字まで, class: "text-form__input", method: "get"
+          -# %form.text-form{action: "#", method: "get"}
+          -#   %input.text-form__input{type: "text", placeholder: "40文字まで"}
       .item-content__item-explanation
         %ul.explanation-title
           %li
             商品の説明
           %li.required
             必須
-        %textarea.text-box{name: "description", placeholder: "商品の説明（必須 1,000文字以内）\n（色、素材、重さ、定価、注意点など）\n\n例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。\n          ", :rows => "7"}
+        = form_with model: @commodity, class: "text-box", local: true do |f|
+          = form.text_field :title, placeholder: :商品の説明（必須 1,000文字以内）\n（色、素材、重さ、定価、注意点など）\n\n例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。\n          , :rows => "7", class: "text-box__input"
+        -# %textarea.text-box{name: "description", placeholder: "商品の説明（必須 1,000文字以内）\n（色、素材、重さ、定価、注意点など）\n\n例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。\n          ", :rows => "7"}
         %p.text.counter
           1/1000
     %hr
@@ -78,8 +82,10 @@
           %li.required
             任意
         .item-details__brand__text-box
-          %form.text-form{action: "#", method: "get"}
-            %input.text-form__input{type: "text", placeholder: "例)シャネル"}
+          = form_with model: @brand, class: "text-form", local: true do |f|
+            = form.text_field :title, placeholder: :例 シャネル, class: "text-form__input"
+          -# %form.text-form{action: "#", method: "get"}
+          -#   %input.text-form__input{type: "text", placeholder: "例)シャネル"}
       .item-details__condition
         %ul.condition-title
           %li
@@ -87,15 +93,17 @@
           %li.required
             必須
         .item-details__condition__select-box
-          .item-details__condition__select-box__select-area
-            %select{name: "conditionId"}
-              %option{"aria-selected": "true", label: "選択してください", selected: "selected", value: ""} 選択してください
-              %option{"aria-selected": "false", label: "新品、未使用", value: "1"} 新品、未使用
-              %option{"aria-selected": "false", label: "未使用に近い", value: "2"} 未使用に近い
-              %option{"aria-selected": "false", label: "目立った傷や汚れなし", value: "3"} 目立った傷や汚れなし
-              %option{"aria-selected": "false", label: "やや傷や汚れあり", value: "4"} やや傷や汚れあり
-              %option{"aria-selected": "false", label: "傷や汚れあり", value: "5"} 傷や汚れあり
-              %option{"aria-selected": "false", label: "全体的に状態が悪い", value: "6"} 全体的に状態が悪い
+          -# .item-details__condition__select-box__select-area
+          = form_with model: @commodity_condition, class: "select-area", local: true do |f|
+            = form.select :condition_id, [ ["新品、未使用",1], ["未使用に近い", 2], ["目立った傷や汚れなし", 3 ] ,["やや傷や汚れあり", 4], ["傷や汚れあり", 5], ["全体的に状態が悪い", 6] ], prompt: "選択してください", class: "hoge"
+            -# %select{name: "conditionId"}
+            -#   %option{"aria-selected": "true", label: "選択してください", selected: "selected", value: ""} 選択してください
+            -#   %option{"aria-selected": "false", label: "新品、未使用", value: "1"} 新品、未使用
+            -#   %option{"aria-selected": "false", label: "未使用に近い", value: "2"} 未使用に近い
+            -#   %option{"aria-selected": "false", label: "目立った傷や汚れなし", value: "3"} 目立った傷や汚れなし
+            -#   %option{"aria-selected": "false", label: "やや傷や汚れあり", value: "4"} やや傷や汚れあり
+            -#   %option{"aria-selected": "false", label: "傷や汚れあり", value: "5"} 傷や汚れあり
+            -#   %option{"aria-selected": "false", label: "全体的に状態が悪い", value: "6"} 全体的に状態が悪い
             %svg{"aria-hidden": "true", fill: "#888888", "fill-rule": "evenodd", height: "24", viewbox: "0 0 24 24", width: "24"}
               %path{d: "M12,15.66a1.73,1.73,0,0,1-1.2-.49L5.21,9.54a.7.7,0,0,1,1-1l5.62,5.62c.15.15.27.15.41,0L17.8,8.6a.71.71,0,0,1,1,0,.69.69,0,0,1,0,1l-5.57,5.58A1.71,1.71,0,0,1,12,15.66Z"}
     %hr
@@ -213,8 +221,10 @@
             必須
         %span ¥
         .price-details__selling-price__text-box
-          %form.text-form{action: "#", method: "get"}
-            %input.text-form__input{type: "text", placeholder: "0"}
+          = form_with model: @commodity_price, class: "text-form", local: true do |f|
+            = form.number_field :title, placeholder: :0, class: "text-form__input"
+          -# %form.text-form{action: "#", method: "get"}
+          -#   %input.text-form__input{type: "text", placeholder: "0"}
       .price-details__fee
         %p 販売手数料（10%)
         %span.fee{"data-test": "fee-value"} —
