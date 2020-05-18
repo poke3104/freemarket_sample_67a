@@ -6,7 +6,8 @@
     .login-panel
       .login-no-account
         .no-account-user アカウントをお持ちでない方はこちら
-        = link_to "新規会員登録", class: "sighup"
+        = link_to "新規会員登録" do
+          .login-submit 新規会員登録
         .login-form-inner
       %form{action: "＃/", method: "POST", novalidate: "novalidate"}
         .login-form-inner
