@@ -63,19 +63,19 @@
       FURIMAの特徴
     .explanation-bottom__items
       .item
-        =image_tag src="icon-1", class: "three-images"
+        =image_tag src="icon-1.svg", class: "three-images"
         %h3.item__title
           簡単に売り買いできる
         .item__text
           %p スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
       .item
-        =image_tag src="icon-3", class: "three-images"
+        =image_tag src="icon-3.svg", class: "three-images"
         %h3.item__title
           売上金は即日振込みに対応
         .item__text
           %p 午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします!
       .item
-        =image_tag src="icon-4", class: "three-images"
+        =image_tag src="icon-4.svg", class: "three-images"
         %h3.item__title
           様々な支払いに対応
         .item__text
@@ -98,48 +98,5 @@
         %h3.pickup-head
           アーカイバ
       .pickup-lists
-        =link_to detail_pages_path, class: "product-list" do
-          .product-list__image
-            =image_tag src="a004.png", class: "product-images"
-          .product-list__body
-            %h3.name 
-              product1
-            .details
-              %ul
-                %li
-                  30000円
-                %li
-                  =icon("fa", "star", class: "like-icon")
-                  0
-              %p
-                (税込)
-        =link_to detail_pages_path, class: "product-list" do
-          .product-list__image
-            =image_tag src="a007.png", class: "product-images"
-          .product-list__body
-            %h3.name 
-              product2
-            .details
-              %ul
-                %li
-                  30000円
-                %li
-                  =icon("fa", "star", class: "like-icon")
-                  0
-              %p
-                (税込)
-        =link_to detail_pages_path, class: "product-list" do
-          .product-list__image
-            =image_tag src="a001.png", class: "product-images"
-          .product-list__body
-            %h3.name 
-              product3
-            .details
-              %ul
-                %li
-                  30000円
-                %li
-                  =icon("fa", "star", class: "like-icon")
-                  0
-              %p
-                (税込)
+        - @last_commodities.each do |commodity|
+          = render partial: 'brand-commodity', locals: {commodity: commodity}
