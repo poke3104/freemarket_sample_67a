@@ -71,7 +71,6 @@ $(function(){
   // 子階層のカテゴリーが選択されたときの動作
   $(".item-details__category").on("change", "#children-category", function(){
     let childrenCategory = document.getElementById("children-category").value;
-    console.log(childrenCategory);
     if(childrenCategory != "選択して下さい"){
       $.ajax({
         url: "category_grandchildren",
