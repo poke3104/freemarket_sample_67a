@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 2020_04_30_145027) do
     t.string "city", null: false
     t.string "twon", null: false
     t.string "building"
-    t.string "prefeture", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -64,7 +63,7 @@ ActiveRecord::Schema.define(version: 2020_04_30_145027) do
     t.string "price", null: false
     t.text "text", null: false
     t.string "condition", null: false
-    t.string "shipping_area", null: false
+    t.string "day_to_ship", null: false
     t.string "shipping_method", null: false
     t.bigint "brand_id", null: false
     t.datetime "created_at", null: false

@@ -1,7 +1,6 @@
-class ConfirmationPagesController < ApplicationController
+class PurchaseController < ApplicationController
   def index
     card = Card.where(user_id: 1).first
-    @commodities = Commodity.find(params[:id])
     if card.blank?
       redirect_to controller: "credit", action: "new"
     else
@@ -13,19 +12,15 @@ class ConfirmationPagesController < ApplicationController
 
   def pay
     card = Card.where(user_id: 1).first
-    @commodities = Commodity.find(params[:id])
+    @commodities = Commodity.find(commodity_id: 1,sales_status_id: 1,price_id:1)
     Payjp.api_key = "sk_test_68a20abc86387e6c7cfc8b9c"
     Payjp::Charge.create(
-    :amount => @commodities.price, 
+    :amount => 100 
     :customer => card.customer_id, 
-    :currency => 'jpy', 
+    :currency => 'jpy',
   )
-  @commodities_buyer = Commodity.find(params[:id])
-  @commodities_buyer.update(sales_status_id: 2)
-  redirect_to done_confirmation_pages_path(id: @commodities) 
-  end
-
-  def done
-    @commodities = Commodity.find(params[:id])
+  @commodities_buyer = Commodity.find(sales_status_id: 1)
+  @commodities_buyer.update(sales_status_id: 1)
+  redirect_to action: 'done'
   end
 end
