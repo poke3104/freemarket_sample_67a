@@ -13,4 +13,5 @@ Rails.application.routes.draw do
     end
   end
   resources :confirmation_pages, only: [:index]
+  resources :sighup_pages, only:[:index]
 end
