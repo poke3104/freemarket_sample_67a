@@ -42,4 +42,5 @@ Rails.application.routes.draw do
       get 'category_grandchildren', defaults: { format: 'json' }
     end
   end
+  resources :sighup_pages, only:[:index]
 end
