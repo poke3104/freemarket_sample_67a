@@ -4,7 +4,6 @@ class CreditController < ApplicationController
   before_action :set_card
 
   def new
-    # card = Card.where(user_id: 1)
     redirect_to action: "show" if @set_card
 
   end
@@ -27,7 +26,6 @@ class CreditController < ApplicationController
   end
 
   def delete 
-    # card = Card.where(user_id: 1).first
     if @set_card.blank?
     else
       Payjp.api_key =ENV["PAYJP_ACCESS_KEY"]
@@ -39,7 +37,6 @@ class CreditController < ApplicationController
   end
 
   def show 
-    # card = Card.where(user_id: 1).first
     if @set_card.blank?
       redirect_to action: "new" 
     else

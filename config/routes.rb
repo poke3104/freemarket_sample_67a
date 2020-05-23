@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  # get 'purchase/index'
-  # get 'purchase/done'
-  # get 'card/new'
-  # get 'card/show'
   devise_for :users
   root "tops#index"
 

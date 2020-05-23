@@ -4,7 +4,6 @@ class CardController < ApplicationController
   before_action :set_card
   
   def new
-    # card = Card.where(user_id: current_user.id)
     redirect_to action: "show" if @set_card.exists?
   end
 
@@ -30,7 +29,6 @@ class CardController < ApplicationController
   def delete 
     Payjp.api_key =ENV["PAYJP_ACCESS_KEY"]
     Payjp.api_key =ENV["PAYJP_PUBLIC_KEY"]
-    # card = Card.where(user_id: 1).first
     if @set_card.blank?
     else
       Payjp.api_key = 'PAYJP_PRIVATE_KEY'
@@ -44,7 +42,6 @@ class CardController < ApplicationController
   def show 
     Payjp.api_key =ENV["PAYJP_ACCESS_KEY"]
     Payjp.api_key =ENV["PAYJP_PUBLIC_KEY"]
-    # card = Card.where(user_id: current_user.id).first
     if @set_card.blank?
       redirect_to action: "new" 
     else

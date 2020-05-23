@@ -3,7 +3,6 @@ class PurchaseController < ApplicationController
   before_action :set_card
 
   def index
-    # card = Card.where(user_id: 1).first
     if @set_card.blank?
       redirect_to controller: "credit", action: "new"
     else
@@ -14,7 +13,6 @@ class PurchaseController < ApplicationController
   end
 
   def pay
-    # card = Card.where(user_id: 1).first
     @commodities = Commodity.find(commodity_id: 1,sales_status_id: 1,price_id:1)
     Payjp.api_key =ENV["PAYJP_ACCESS_KEY"]
     Payjp::Charge.create(

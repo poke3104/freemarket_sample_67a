@@ -3,7 +3,6 @@ class ConfirmationPagesController < ApplicationController
   before_action :set_card
 
   def index
-    # card = Card.where(user_id: 1).first
     @commodities = Commodity.find(params[:id])
     if @set_card.blank?
       redirect_to controller: "credit", action: "new"
@@ -15,7 +14,6 @@ class ConfirmationPagesController < ApplicationController
   end
 
   def pay
-    # card = Card.where(user_id: 1).first
     @commodities = Commodity.find(params[:id])
     Payjp.api_key =ENV["PAYJP_ACCESS_KEY"]
     Payjp::Charge.create(
