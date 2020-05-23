@@ -45,8 +45,10 @@
           .postage
             （税込）送料込み
         .product-box__button
-          =link_to confirmation_pages_path(id: @commodity_detail), class: "buy-button" do
-            購入画面に進む
+          - if @commodity_detail.sales_status.id == 2
+            売り切れました
+          - else @commodity_detail.sales_status.id == 1
+            = link_to "購入画面に進む",confirmation_pages_path(id: @commodity_detail),class:"buy-button" 
         .product-box__text
           =@commodity_detail.text
         .product-box__table
