@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(version: 2020_05_12_015551) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "customer_id", null: false
+    t.string "card_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -58,11 +66,13 @@ ActiveRecord::Schema.define(version: 2020_05_12_015551) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "postage_id"
+    t.bigint "clothe_id"
     t.bigint "sales_status_id"
     t.bigint "exhibition_commodity_id"
     t.bigint "purchase_commodity_id"
     t.bigint "shipping_charge_id"
     t.index ["brand_id"], name: "index_commodities_on_brand_id"
+    t.index ["clothe_id"], name: "index_commodities_on_clothe_id"
     t.index ["exhibition_commodity_id"], name: "index_commodities_on_exhibition_commodity_id"
     t.index ["postage_id"], name: "index_commodities_on_postage_id"
     t.index ["purchase_commodity_id"], name: "index_commodities_on_purchase_commodity_id"
