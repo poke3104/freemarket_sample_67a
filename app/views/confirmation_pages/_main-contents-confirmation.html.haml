@@ -4,9 +4,6 @@
       購入内容の確認
     .product
       .product-image
-        -# =image_tag src="a004.png", class: "label-image"
-        -# -commodity_image = commodity.images.limit(1).pluck(:image)
-        -# =image_tag commodity_image[0], class: "product-images"
         -detail_images = @commodities.images.pluck(:image)
         =image_tag detail_images[0], class:"label-image"
       .product-text
