@@ -1,23 +1,26 @@
 class ConfirmationPagesController < ApplicationController
+  
+  before_action :set_card
+
   def index
-    card = Card.where(user_id: 1).first
+    # card = Card.where(user_id: 1).first
     @commodities = Commodity.find(params[:id])
-    if card.blank?
+    if @set_card.blank?
       redirect_to controller: "credit", action: "new"
     else
-      Payjp.api_key = "sk_test_68a20abc86387e6c7cfc8b9c"
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      @default_card_information = customer.cards.retrieve(card.card_id)
+      Payjp.api_key =ENV["PAYJP_ACCESS_KEY"]
+      customer = Payjp::Customer.retrieve(@set_card.customer_id)
+      @default_card_information = customer.cards.retrieve(@set_card.card_id)
     end
   end
 
   def pay
-    card = Card.where(user_id: 1).first
+    # card = Card.where(user_id: 1).first
     @commodities = Commodity.find(params[:id])
-    Payjp.api_key = "sk_test_68a20abc86387e6c7cfc8b9c"
+    Payjp.api_key =ENV["PAYJP_ACCESS_KEY"]
     Payjp::Charge.create(
     :amount => @commodities.price, 
-    :customer => card.customer_id, 
+    :customer => @set_card.customer_id, 
     :currency => 'jpy', 
   )
   @commodities_buyer = Commodity.find(params[:id])
@@ -27,5 +30,11 @@ class ConfirmationPagesController < ApplicationController
 
   def done
     @commodities = Commodity.find(params[:id])
+  end
+
+  private
+
+  def set_card
+    @set_card = Card.where(user_id: 1).first
   end
 end

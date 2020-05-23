@@ -1,15 +1,16 @@
 class CardController < ApplicationController
   
   require "payjp"
-
+  before_action :set_card
+  
   def new
-    card = Card.where(user_id: current_user.id)
-    redirect_to action: "show" if card.exists?
+    # card = Card.where(user_id: current_user.id)
+    redirect_to action: "show" if @set_card.exists?
   end
 
   def pay
-    PAYJP_PRIVATE_KEY = 'sk_test_68a20abc86387e6c7cfc8b9c'
-    PAYJP_KEY = 'pk_test_8e13b8dae6954376a8865e87'
+    Payjp.api_key =ENV["PAYJP_ACCESS_KEY"]
+    Payjp.api_key =ENV["PAYJP_PUBLIC_KEY"]
     Payjp.api_key = PAYJP_PRIVATE_KEY
     if params['payjp-token'].blank?
       redirect_to action: "new"
@@ -17,7 +18,7 @@ class CardController < ApplicationController
       customer = Payjp::Customer.create(
         card: params['payjp-token']
       )
-      @card = Card.new(user_id: current_user.id, customer_id: customer.id,card_id:customer.default_card)
+      @card = Card.new(user_id: 1, customer_id: customer.id,card_id:customer.default_card)
       if @card.save
         redirect_to action: "show"
       else
@@ -27,13 +28,13 @@ class CardController < ApplicationController
   end
 
   def delete 
-    PAYJP_PRIVATE_KEY = 'sk_test_68a20abc86387e6c7cfc8b9c'
-    PAYJP_KEY = 'pk_test_8e13b8dae6954376a8865e87'
-    card = Card.where(user_id: current_user.id).first
-    if card.blank?
+    Payjp.api_key =ENV["PAYJP_ACCESS_KEY"]
+    Payjp.api_key =ENV["PAYJP_PUBLIC_KEY"]
+    # card = Card.where(user_id: 1).first
+    if @set_card.blank?
     else
       Payjp.api_key = 'PAYJP_PRIVATE_KEY'
-      customer = Payjp::Customer.retrieve(card.customer_id)
+      customer = Payjp::Customer.retrieve(@set_card.customer_id)
       customer.delete
       card.delete
     end
@@ -41,15 +42,21 @@ class CardController < ApplicationController
   end
 
   def show 
-    PAYJP_PRIVATE_KEY = 'sk_test_68a20abc86387e6c7cfc8b9c'
-    PAYJP_KEY = 'pk_test_8e13b8dae6954376a8865e87'
-    card = Card.where(user_id: current_user.id).first
-    if card.blank?
+    Payjp.api_key =ENV["PAYJP_ACCESS_KEY"]
+    Payjp.api_key =ENV["PAYJP_PUBLIC_KEY"]
+    # card = Card.where(user_id: current_user.id).first
+    if @set_card.blank?
       redirect_to action: "new" 
     else
       Payjp.api_key = PAYJP_PRIVATE_KEY
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      @default_card_information = customer.cards.retrieve(card.card_id)
+      customer = Payjp::Customer.retrieve(@set_card.customer_id)
+      @default_card_information = customer.cards.retrieve(@set_card.card_id)
     end
+  end
+
+  private
+
+  def set_card
+    @set_card = Card.where(user_id: 1).first
   end
 end

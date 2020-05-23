@@ -1,15 +1,16 @@
 class CreditController < ApplicationController
   require "payjp"
   protect_from_forgery
+  before_action :set_card
 
   def new
-    card = Card.where(user_id: 1)
-    redirect_to action: "show" if card.exists?
+    # card = Card.where(user_id: 1)
+    redirect_to action: "show" if @set_card
 
   end
 
   def pay
-    Payjp.api_key = 'sk_test_68a20abc86387e6c7cfc8b9c'
+    Payjp.api_key =ENV["PAYJP_ACCESS_KEY"]
     if params['payjp-token'].blank?
       redirect_to action: "new"
     else
@@ -26,25 +27,31 @@ class CreditController < ApplicationController
   end
 
   def delete 
-    card = Card.where(user_id: 1).first
-    if card.blank?
+    # card = Card.where(user_id: 1).first
+    if @set_card.blank?
     else
-      Payjp.api_key = 'sk_test_68a20abc86387e6c7cfc8b9c'
-      customer = Payjp::Customer.retrieve(card.customer_id)
+      Payjp.api_key =ENV["PAYJP_ACCESS_KEY"]
+      customer = Payjp::Customer.retrieve(@set_card.customer_id)
       customer.delete
-      card.delete
+      @set_card.delete
     end
       redirect_to action: "new"
   end
 
   def show 
-    card = Card.where(user_id: 1).first
-    if card.blank?
+    # card = Card.where(user_id: 1).first
+    if @set_card.blank?
       redirect_to action: "new" 
     else
-      Payjp.api_key = 'sk_test_68a20abc86387e6c7cfc8b9c'
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      @default_card_information = customer.cards.retrieve(card.card_id)
+      Payjp.api_key =ENV["PAYJP_ACCESS_KEY"]
+      customer = Payjp::Customer.retrieve(@set_card.customer_id)
+      @default_card_information = customer.cards.retrieve(@set_card.card_id)
     end
+  end
+
+  private
+
+  def set_card
+    @set_card = Card.where(user_id: 1).first
   end
 end
