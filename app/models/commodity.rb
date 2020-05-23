@@ -18,7 +18,7 @@ class Commodity < ApplicationRecord
 
   accepts_nested_attributes_for :images
   accepts_nested_attributes_for :brand, allow_destroy: true
-  accepts_nested_attributes_for :shipping_chaege, allow_destroy: true
+  accepts_nested_attributes_for :shipping_charge, allow_destroy: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
