@@ -67,7 +67,6 @@ gem 'haml-rails'
 gem 'font-awesome-sass'
 gem "jquery-rails"
 gem 'devise'
-gem 'ancestry'
 
 group :production do
   gem 'unicorn', '5.4.1'
