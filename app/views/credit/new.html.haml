@@ -1,0 +1,94 @@
+.main-background
+  .header
+    = render 'shared/header'
+  .main
+    = render 'users/side'
+    .credit-content
+      .credit-content-title
+        クレジットカード情報入力
+      .credit-content-detail
+        .credit-content-detail-box
+          .form-group
+            = form_tag(pay_credit_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
+              .number
+                カード番号
+              .important
+                必須
+              .imputform-number
+                %input.text-form-number{:type => "text", :placeholder => "半角数字のみ", id: 'number_form'}
+              .card-list
+                .visa
+                  =image_tag src="visa.svg",height:"20",width:"49"
+                .mastercard
+                  =image_tag src="master-card.svg",height:"20",width:"49"
+                .saison
+                  =image_tag src="saison-card.svg",height:"20",width:"49"
+                .jcb
+                  =image_tag src="jcb.svg",height:"20",width:"49"
+                .american
+                  =image_tag src="american_express.svg",height:"20",width:"49"
+                .dinersclub
+                  =image_tag src="dinersclub.svg",height:"20",width:"49"
+                .discover
+                  =image_tag src="discover.svg",height:"20",width:"49"
+            .form-group-second
+              .limit
+                有効期限
+              .important
+                必須
+              .imputform-box
+                .imputform-box-month
+                  %select{name:"exp_month",type:"text", id:'exp_month'}
+                    %option{value:""}
+                    %option{value:"1"}01
+                    %option{value:"2"}02
+                    %option{value:"3"}03
+                    %option{value:"4"}04
+                    %option{value:"5"}05
+                    %option{value:"6"}06
+                    %option{value:"7"}07
+                    %option{value:"8"}08
+                    %option{value:"9"}09
+                    %option{value:"10"}10
+                    %option{value:"11"}11
+                    %option{value:"12"}12
+                  .imputform-month-text
+                    月
+                .imputform-box-year
+                  %select{name:"exp_year",type:"text", id: 'exp_year'}
+                    %option{value:""}
+                    %option{value:"2019"}19
+                    %option{value:"2020"}20
+                    %option{value:"2021"}21
+                    %option{value:"2022"}22
+                    %option{value:"2023"}23
+                    %option{value:"2024"}24
+                    %option{value:"2025"}25
+                    %option{value:"2026"}26
+                    %option{value:"2027"}27
+                    %option{value:"2028"}28
+                    %option{value:"2029"}29
+                    %option{value:"2029"}30
+                  .imputform-year-text
+                    年
+            .form-group-third
+              .code
+                セキュリティーコード
+              .important
+                必須
+              .imputform-number
+                %input.text-form-number{:type => "text", :placeholder => "カード背面４桁もしくは３桁の番号", id: 'cvc'}
+              .help-box
+                .help-box-text
+                  = icon('fas', 'question-circle')
+                  カード裏面の番号とは？
+            .add
+              #card_token
+              = submit_tag "追加する", id: "token_submit", class: "button"
+            
+
+
+
+    
+  .footer
+    = render 'shared/footer'

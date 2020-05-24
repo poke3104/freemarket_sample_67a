@@ -1,0 +1,31 @@
+.sighup-header
+  .header-sighup
+    =link_to "#" do
+      =image_tag "/assets/logo-d3d78326971d78b06e3d6f0ba666d025a8ad681286b4d9e00e7dbe8673bcfd23.svg", class: "logo-image"
+  %nav.development-bar
+    %ul.clearfix
+      %li.active
+        会員情報
+        .circle
+      %li.active
+        電話番号認証
+        .circle2
+      %li.active
+        完了
+        .circle
+.single-main
+  .single-container
+    .chapter-head 電話番号認証
+    %form.phone_number-form{action: "#",method: "POST", novalidate: "novalidate"}
+      %input{name: "after_save_callback", type:"hidden", value: ""}/
+      .sighup-content
+        .form-group
+          %label{for:"phone_number", class:"phonenumber"} 認証番号
+          %input.input-default{name: "phone_number",placeholder: "携帯電話の番号を入力", type:"tel", value:"#"}/
+        .SMS-sighup SMSで届いた認証番号を入力してください
+        %button.btn-default.btn-red{type:"submit"} 認証して完了
+        .user-sighup ※電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません。
+        .form-group.text-right
+      %input{name:"__csrf_value", type: "hidden", value:"#"}/
+      %input{name:"id", type: "hidden", value:"344694992"}/
+= render 'shared/footer'
