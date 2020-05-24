@@ -4,6 +4,7 @@ class Commodity < ApplicationRecord
   belongs_to :user
   belongs_to :brand
   belongs_to :sales_status
+  belongs_to :clothe
   belongs_to :postage
   has_many :images, dependent: :delete_all
   has_many :Commodity_categories, dependent: :delete_all
