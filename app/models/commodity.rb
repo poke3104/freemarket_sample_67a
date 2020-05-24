@@ -1,6 +1,7 @@
 class Commodity < ApplicationRecord
   validates :name, :price, :day_to_ship, :shipping_method, presence: true
 
+  belongs_to :user
   belongs_to :brand
   belongs_to :sales_status
   belongs_to :postage
