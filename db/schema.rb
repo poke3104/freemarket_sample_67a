@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_08_112522) do
+ActiveRecord::Schema.define(version: 2020_04_29_142728) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "post_number", null: false
     t.string "city", null: false
     t.string "twon", null: false
     t.string "building"
+    t.string "prefeture", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -29,7 +30,7 @@ ActiveRecord::Schema.define(version: 2020_05_08_112522) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "catefgories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,7 +51,7 @@ ActiveRecord::Schema.define(version: 2020_05_08_112522) do
     t.text "text", null: false
     t.string "clothe"
     t.string "condition", null: false
-    t.string "day_to_ship", null: false
+    t.string "shipping_area", null: false
     t.string "shipping_method", null: false
     t.bigint "brand_id", null: false
     t.datetime "created_at", null: false
@@ -71,10 +72,10 @@ ActiveRecord::Schema.define(version: 2020_05_08_112522) do
   end
 
   create_table "commodity_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "commodity_id", null: false
+    t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "commodity_id"
-    t.bigint "category_id"
     t.index ["category_id"], name: "index_commodity_categories_on_category_id"
     t.index ["commodity_id"], name: "index_commodity_categories_on_commodity_id"
   end
@@ -160,8 +161,6 @@ ActiveRecord::Schema.define(version: 2020_05_08_112522) do
   add_foreign_key "commodities", "shipping_charges"
   add_foreign_key "commodities", "users", column: "exhibition_commodity_id"
   add_foreign_key "commodities", "users", column: "purchase_commodity_id"
-  add_foreign_key "commodity_categories", "categories"
-  add_foreign_key "commodity_categories", "commodities"
   add_foreign_key "evaluations", "users"
   add_foreign_key "images", "commodities"
   add_foreign_key "likes", "commodities"
