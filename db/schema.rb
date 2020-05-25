@@ -62,12 +62,12 @@ ActiveRecord::Schema.define(version: 2020_05_12_015551) do
     t.string "condition", null: false
     t.string "day_to_ship", null: false
     t.string "shipping_method", null: false
-    t.bigint "exhibition_commodity", null: false
-    t.bigint "purchase_commodity", null: false
+    t.bigint "exhibition_commodity_id", null: false
+    t.bigint "purchase_commodity_id", null: false
     t.bigint "brand_id"
     t.bigint "shipping_charge_id", null: false
-    t.bigint "sales_status", null: false
-    t.bigint "postage", null: false
+    t.bigint "sales_status_id", null: false
+    t.bigint "postage_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
