@@ -58,8 +58,8 @@
             ブランド
       %ul.right-contents
         %ls.right-contents__item--login
-          =link_to "#", class: "list-link" do
+          =link_to new_user_session_path, class: "list-link" do
             ログイン
         %ls.right-contents__item--new
-          =link_to sighup_pages_path, class: "list-link" do
+          =link_to new_user_registration_path, class: "list-link" do
             新規会員登録
