@@ -1,0 +1,18 @@
+.commodities_done{
+display:flex;
+justify-content: center;
+  &_text{
+    height:50px;
+    text-align:center;
+    line-height:50px;
+  }
+}
+.return_top{
+  display:flex;
+  justify-content:center;
+  &_link{
+    height:25px;
+    text-align:center;
+    line-height:25px;
+  }
+}

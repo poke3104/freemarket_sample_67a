@@ -8,10 +8,12 @@ class CreateCommodities < ActiveRecord::Migration[5.2]
       t.string :condition,       null: false
       t.string :day_to_ship,     null: false
       t.string :shipping_method, null: false
-      # t.references :exhibition_commodity, null: false, foreign_key: true
-      # t.references :purchase_commodity,   null: false, foreign_key: true
-      t.references :brand,                null: false, foreign_key: true
-      # t.references :shipping_charge,      null: false, foreign_key: true
+      t.bigint :exhibition_commodity_id, null: false, foreign_key: { to_table: :users }
+      t.bigint :purchase_commodity_id,   null: false, foreign_key: { to_table: :users }
+      t.bigint :brand_id,                foreign_key: true
+      t.bigint :shipping_charge_id,      null: false, foreign_key: true
+      t.bigint :sales_status_id,            null: false, foreign_key: true
+      t.bigint :postage_id,                 null: false, foreign_key: true
       t.timestamps
     end
   end

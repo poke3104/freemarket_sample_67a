@@ -84,3 +84,5 @@ end
 gem 'carrierwave'
 gem 'fog-aws'
 
+gem 'payjp'
+gem 'devise'
