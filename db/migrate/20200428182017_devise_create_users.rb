@@ -11,11 +11,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :last_name,          null: false
       t.string :first_name_kana,    null: false
       t.string :last_name_kana,     null: false
-      t.string :phone_number,       null: false
-      t.string :year_birth_at,      null: false
-      t.string :month_birth_at,     null: false
-      t.string :day_birth_at,       null: false
-
+      t.date :birthday,             null: false
 
       ## Recoverable
       t.string   :reset_password_token

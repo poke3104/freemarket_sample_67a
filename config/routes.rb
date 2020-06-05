@@ -3,11 +3,19 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
+  devise_scope :user do
+    get 'addresses', to: 'users/registrations#new_address'
+    post 'addresses', to: 'users/registrations#create_address'
+  end
+  
   root "tops#index"
 
   resources :detail_pages, only: [:index]
-  resources :mypages, only:[:index]
-  resources :logout, only:[:index]
+  resources :mypages, only:[:index] do
+    collection do
+      get 'logout'
+    end
+  end
   resources :credit,only:[:index]
   resources :exhibition, only:[:new] do
     collection do
@@ -16,5 +24,5 @@ Rails.application.routes.draw do
     end
   end
   resources :confirmation_pages, only: [:index]
-  resources :sighup_pages, only:[:index]
+  resources :complete_pages, only: [:index]
 end

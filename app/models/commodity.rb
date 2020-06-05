@@ -1,11 +1,11 @@
 class Commodity < ApplicationRecord
   validates :name, :price, :day_to_ship, :shipping_method, presence: true
 
-  belongs_to :user
-  belongs_to :brand
-  belongs_to :sales_status
-  belongs_to :postage
-  belongs_to :shipping_charge
+  belongs_to :user, optional: true
+  belongs_to :brand, optional: true
+  belongs_to :sales_status, optional: true
+  belongs_to :postage, optional: true
+  belongs_to :shipping_charge, optional: true
   has_many :images, dependent: :delete_all
   has_many :commodity_categories, dependent: :delete_all
   has_many :categories, through: :Commodity_categories

@@ -56,10 +56,17 @@
         %ls.left-contents__item
           =link_to "#", id: "brand" do
             ブランド
-      %ul.right-contents
-        %ls.right-contents__item--login
-          =link_to new_user_session_path, class: "list-link" do
-            ログイン
-        %ls.right-contents__item--new
-          =link_to new_user_registration_path, class: "list-link" do
-            新規会員登録
+      -if user_signed_in?
+        %ul.right-contents
+          %ls.right-contents__item--login
+            =link_to mypages_path, class: "list-link" do
+              マイページ
+      -else
+        %ul.right-contents
+          %ls.right-contents__item--login
+            =link_to new_user_session_path, class: "list-link" do
+              ログイン
+          %ls.right-contents__item--new
+            =link_to new_user_registration_path, class: "list-link" do
+              新規会員登録
+

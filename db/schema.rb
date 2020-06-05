@@ -14,9 +14,11 @@ ActiveRecord::Schema.define(version: 2020_05_12_015551) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "post_number", null: false
+    t.integer "prefecture_id", null: false
     t.string "city", null: false
-    t.string "twon", null: false
+    t.string "town", null: false
     t.string "building"
+    t.string "phone_number"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -54,12 +56,12 @@ ActiveRecord::Schema.define(version: 2020_05_12_015551) do
     t.string "condition", null: false
     t.string "day_to_ship", null: false
     t.string "shipping_method", null: false
-    t.bigint "exhibition_commodity", null: false
-    t.bigint "purchase_commodity", null: false
+    t.bigint "exhibition_commodity_id", null: false
+    t.bigint "purchase_commodity_id", null: false
     t.bigint "brand_id"
     t.bigint "shipping_charge_id", null: false
-    t.bigint "sales_status", null: false
-    t.bigint "postage", null: false
+    t.bigint "sales_status_id", null: false
+    t.bigint "postage_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -124,10 +126,7 @@ ActiveRecord::Schema.define(version: 2020_05_12_015551) do
     t.string "last_name", null: false
     t.string "first_name_kana", null: false
     t.string "last_name_kana", null: false
-    t.string "phone_number", null: false
-    t.string "year_birth_at", null: false
-    t.string "month_birth_at", null: false
-    t.string "day_birth_at", null: false
+    t.date "birthday", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

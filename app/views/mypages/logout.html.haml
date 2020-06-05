@@ -1,10 +1,10 @@
+.header
+  = render 'shared/header'
 .main-background
-  .header
-    = render 'shared/header'
   .main
     = render 'mypages/side'
     .logout-box
-      .logout-box_btn
+      =link_to destroy_user_session_path, method: :delete, class:"logout-box_btn" do
         ログアウト
   .footer
     = render 'shared/footer'

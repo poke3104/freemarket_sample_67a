@@ -5,18 +5,20 @@
   .single-main
     .login-panel
       .login-no-account
-        .no-account-user アカウントをお持ちでない方はこちら
+        .no-account-user
+          アカウントをお持ちでない方はこちら
         = link_to new_user_registration_path do
-          .login-submit 新規会員登録
-        .login-form-inner
-      %form{action: "＃/", method: "POST", novalidate: "novalidate"}
+          .login-submit
+            新規会員登録
+      .line
+      -# =form_with model: @user, url: user_session_path(resource_name), local: true do |f|
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .login-form-inner
           .form-group
-            %input.login-input-text.input-default{name: "email", placeholder: "メールアドレス", type:"email", value: ""}/
+            =f.email_field :email, placeholder: "メールアドレス", class: "login-input-text"
           .form-group
-            %input.login-input-text.input-default{name: "password", placeholder: "パスワード", type:"password"}/
-          %button.login-submit.btn-default.btn-red{type: "submit"} ログイン
-          %input{name: "login_callback", type: "hidden", value: "/jp/"}/
-          %input{name:"__csrf_value",type:"hidden", value:"5c31e59c297af778ce096e4dfd13c5a38ada5009dd3b58248a4e34528f1cff63af5c8877db3f7f703f07d171026880092471b7f6e8a54b9491879644fd2007862"}/
-          = link_to "パスワードをお忘れの方", class: "forget-password"
+            =f.password_field :password, placeholder: "パスワード", class: "login-input-text", id: "password"
+          =f.submit 'ログイン', class: "login-submit", url: "root_path"
+          = link_to "#", class: "forget-password" do
+            パスワードをお忘れの方
 = render 'shared/detail-footer'
