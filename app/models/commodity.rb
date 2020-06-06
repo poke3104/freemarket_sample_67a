@@ -1,10 +1,9 @@
 class Commodity < ApplicationRecord
   validates :name, :price, :day_to_ship, :shipping_method, presence: true
 
-  belongs_to :brand
-  belongs_to :sales_status
-  belongs_to :postage
-  belongs_to :shipping_charge
+  belongs_to :brand, optional: true
+  belongs_to :sales_status, optional: true
+  belongs_to :postage, optional: true
   has_many :images, dependent: :delete_all
   has_many :commodity_categories, dependent: :delete_all
   has_many :categories, through: :Commodity_categories
@@ -12,15 +11,13 @@ class Commodity < ApplicationRecord
   has_many :users, through: :likes
   has_many :comments, dependent: :delete_all
   has_many :users, through: :comments
-  belongs_to :exhibition_commodities, class_name: "User"
-  belongs_to :purchase_commodities, class_name: "User"
+  belongs_to :exhibition_commodities, class_name: "User", optional: true
+  belongs_to :purchase_commodities, class_name: "User", optional: true
 
-  accepts_nested_attributes_for :images
+  accepts_nested_attributes_for :images, allow_destroy: true
   accepts_nested_attributes_for :brand, allow_destroy: true
-  accepts_nested_attributes_for :shipping_charge, allow_destroy: true
+  # accepts_nested_attributes_for :shipping_charge, allow_destroy: true
 
-  extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :prefecture
-  belongs_to :exhibition_commodity, class_name: "User"
-  belongs_to :purchase_commodity, class_name: "User"
+
+
 end

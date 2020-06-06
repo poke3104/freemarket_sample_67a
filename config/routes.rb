@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   # devise_for :users
   root "tops#index"
 
-  resources :exhibition, only:[:index, :new, :create]
   resources :detail_pages, only: [:index]
   resources :users, only:[:index]
   resources :logout, only:[:index]
@@ -25,16 +24,21 @@ Rails.application.routes.draw do
       get 'done', to: 'confirmation_pages#done'
     end
   end
-  resources :commodities do
+  resources :commodities, only: [:new, :create] do
+
     member do
       post 'pay', to: 'confirmation_pages#pay'
     end
-  end
-  resources :exhibition, only:[:new] do
     collection do
       get 'category_children', defaults: { format: 'json' }
       get 'category_grandchildren', defaults: { format: 'json' }
     end
   end
+  # resources :exhibition, only:[:new, :create] do
+  #   collection do
+  #     get 'category_children', defaults: { format: 'json' }
+  #     get 'category_grandchildren', defaults: { format: 'json' }
+  #   end
+  # end
   resources :sighup_pages, only:[:index]
 end

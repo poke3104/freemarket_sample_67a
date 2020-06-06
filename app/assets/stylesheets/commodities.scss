@@ -75,6 +75,10 @@
               border-color: rgb(204, 204, 204);
               border-image: initial;
               transition: all 0.5s ease-out 0s;
+              .input-file {
+                // display: none;
+              }
+              
               li {
                 height: 24px;
                 margin-bottom: 8px;
@@ -259,6 +263,62 @@
           }
         }
       }
+      &__clothe {
+        ul.clothe-title {
+          display: flex;
+          align-items: center;
+          margin-top: 32px;
+          li {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.4em;
+          }
+          li.required {
+            margin-left: 8px;
+            font-size: 12px;
+            padding: 0 4px;
+            font-weight: 600;
+            background-color: mediumturquoise;
+            color: #fff;
+            border-radius: 2px;
+            display: inline-block;
+          }
+        }
+        &__select-box {
+          margin-top: 16px;
+          align-items: center;
+          display: inline-flex;
+          width: 100%;
+          &__select-area {
+            display: inline-block;
+            position: relative;
+            width: inherit;
+            select {
+              background-color: #fff;
+              -webkit-appearance: none;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              box-sizing: border-box;
+              color: #222;
+              font-size: 16px;
+              height: 48px;
+              line-height: 1;
+              margin: 0;
+              outline: none;
+              padding: 0 56px 0 16px;
+              width: 100%;
+            }
+            svg {
+              bottom: 0;
+              margin: auto;
+              pointer-events: none;
+              position: absolute;
+              right: 16px;
+              top: 0;
+            }
+          }
+        }
+      }
       &__brand {
         ul.brand-title {
           display: flex;
@@ -384,6 +444,62 @@
       }
       &__shipping-payer {
         ul.shipping-payer-title {
+          display: flex;
+          align-items: center;
+          margin-top: 32px;
+          li {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.4em;
+          }
+          li.required {
+            margin-left: 8px;
+            font-size: 12px;
+            padding: 0 4px;
+            font-weight: 600;
+            background-color: mediumturquoise;
+            color: #fff;
+            border-radius: 2px;
+            display: inline-block;
+          }
+        }
+        &__select-box {
+          margin-top: 16px;
+          align-items: center;
+          display: inline-flex;
+          width: 100%;
+          &__select-area {
+            display: inline-block;
+            position: relative;
+            width: inherit;
+            select {
+              background-color: #fff;
+              -webkit-appearance: none;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              box-sizing: border-box;
+              color: #222;
+              font-size: 16px;
+              height: 48px;
+              line-height: 1;
+              margin: 0;
+              outline: none;
+              padding: 0 56px 0 16px;
+              width: 100%;
+            }
+            svg {
+              bottom: 0;
+              margin: auto;
+              pointer-events: none;
+              position: absolute;
+              right: 16px;
+              top: 0;
+            }
+          }
+        }
+      }
+      &__shipping_method {
+        ul.shipping_method-title {
           display: flex;
           align-items: center;
           margin-top: 32px;
@@ -667,17 +783,6 @@
       .exhibition-btn {
         background-color: mediumturquoise;
         color: #fff;
-        width: 100%;
-        font-size: 17px;
-        min-height: 48px;
-        padding: 0 24px;
-        font-family: Arial,游ゴシック体,YuGothic,メイリオ,Meiryo,sans-serif;
-        }
-      .save-btn {
-        margin-top: 24px;
-        background-color: #ccc;
-        border-color: transparent;
-        color: #222;
         width: 100%;
         font-size: 17px;
         min-height: 48px;
