@@ -85,3 +85,4 @@ end
 gem 'carrierwave'
 gem 'fog-aws'
 gem 'active_hash'
+gem 'payjp'

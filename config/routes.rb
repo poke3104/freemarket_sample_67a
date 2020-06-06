@@ -17,6 +17,30 @@ Rails.application.routes.draw do
     end
   end
   resources :credit,only:[:index]
+  resources :credit,only:[:index,:new,:show] do
+    collection do
+      post 'pay', to: 'credit#pay'
+      post 'delete', to: 'credit#delete'
+      post 'show', to: 'credit#show'
+    end
+  end
+  resources :purchase, only: [:index] do
+    collection do
+      post 'pay', to: 'purchase#pay'
+      get 'done', to: 'purchase#done'
+    end
+  end
+  resources :confirmation_pages, only: [:index] do
+    collection do
+      post 'pay', to: 'confirmation_pages#pay'
+      get 'done', to: 'confirmation_pages#done'
+    end
+  end
+  resources :commodities do
+    member do
+      post 'pay', to: 'confirmation_pages#pay'
+    end
+  end
   resources :exhibition, only:[:new] do
     collection do
       get 'category_children', defaults: { format: 'json' }

@@ -7,9 +7,9 @@
     .contend-sub
       .my_page-user-icon
         .my_page-user-icon-img
-          %img(src="/assets/aaa.jpeg"height="200"width="700")
+          =image_tag src="aaa.jpg", height:"200",width:"700"
           .my_page-user-icon-img-photo
-            %img(src="/assets/no_image_icon.png"height="60"width="60"class="user_icon")
+            =image_tag src="no_image_icon.png", height:"60", width:"60", class:"user_icon"
           .my_page-user-icon-img-photo-username
             username
           .my_page-user-icon-img-text
@@ -36,7 +36,7 @@
               .mypage-item-link-body-time-guide
                 ○○分前
           .mypage-item-link-figure
-            %img(src="/assets/icon_brand.png"width="48")
+            =image_tag src="icon_brand.png",width:"48"
           .mypage-item-link-arrow
             = icon('fas', 'chevron-right')
         .maypage-go-list
@@ -53,7 +53,7 @@
         .tab-content
           .tab-content-box
             .tab-content-box-figure
-              %img(src="/assets/icon_brand.png"width="120")
+              =image_tag src="icon_brand.png",width:"120"
             .tab-content-box-body
               取引中の商品はありません
   .footer
