@@ -44,9 +44,10 @@
             =@commodity_detail.price
           .postage
             （税込）送料込み
-        .product-box__button
-          =link_to confirmation_pages_path(id: @commodity_detail), class: "buy-button" do
-            購入画面に進む
+        - if user_signed_in? && current_user.id != @commodity_detail.exhibition_commodity.id
+          .product-box__button
+            =link_to confirmation_pages_path(id: @commodity_detail), class: "buy-button" do
+              購入画面に進む
         .product-box__text
           =@commodity_detail.text
         .product-box__table
@@ -96,14 +97,15 @@
             =link_to "#" do
               =icon('fa', 'flag', class: "flag-icon")
               不適切な商品の通報
-      .edit-box
-        .edit-box__edit
-          =link_to "#", class: "edit-button" do
-            商品の編集
-        %p or
-        .edit-box__delete
-          =link_to "#", class: "delete-button" do
-            この商品を削除する
+      - if user_signed_in? && current_user.id == @commodity_detail.exhibition_commodity.id
+        .edit-box
+          .edit-box__edit
+            =link_to "#", class: "edit-button" do
+              商品の編集
+          %p or
+          .edit-box__delete
+            =link_to "#", class: "delete-button" do
+              この商品を削除する
       .comment-box
         %form{:action => "#", :method => "post", :class => "comment-form"}
           %textarea{:required => "required", :name => "inputArea", :id => "comment-area"}
