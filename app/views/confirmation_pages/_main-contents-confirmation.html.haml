@@ -4,23 +4,21 @@
       購入内容の確認
     .product
       .product-image
-        -detail_images = @commodities.images.pluck(:image)
-        =image_tag detail_images[0], class:"label-image"
+        =image_tag src="a004.png", class: "label-image"
       .product-text
         .product-text__name
-          = @commodities.name
+          product2
         .product-text__price
-          %span 
-            = @commodities.price
+          %span ¥20,000
           %span.fee-details （税込）送料込み
     .payment-details
-      %form_with{action: "#", method: "post", id: "buy-product-form", class: "product-form"}
+      %form{action: "#", method: "post", id: "buy-product-form", class: "product-form"}
         .payment-amount-box
           .payment-amount
             .payment-amount__label
               支払い金額
             .payment-amount__price
-              = @commodities.price
+              ¥20,000
           .point
             %label
               %input{type: "checkbox", id: "check", class: "point-checkbox", name: "check"} 
@@ -33,13 +31,15 @@
             %ul.inner-box__heading
               %li
                 %h3 支払い方法
-                - if @default_card_information.blank?
-                  %br クレジットカードが登録されていません
-                - else
-                  = "**** **** **** " + @default_card_information.last4
-                  - exp_month = @default_card_information.exp_month.to_s
-                  - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
-                  = exp_month + " / " + exp_year
+              %li
+                =link_to "#", class: "change-link" do
+                  変更する
+            .inner-box__user-card
+              クレジットカード
+              %br/
+              ****************
+              %br/
+              有効期限 04 / 22
             .inner-box__card-logo
               =image_tag src="visa.svg", size: "50"
         .shipping-address
@@ -56,5 +56,5 @@
             %br/
             中田 彰都
         .buy-button
-        = form_with url: pay_commodity_path(@commodities.id),method: :post, local: true do |form| 
-          = form.submit '購入する'
+          %button{type: "submit", class: "buy-red-button"}
+            購入する

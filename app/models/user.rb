@@ -4,7 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # validates :nickname, presence: true
+  validates :password, confirmation: true
+  devise :validatable, password_length: 7..128
+  validates :first_name, :last_name, format: { with: /[^ -~｡-ﾟ]+/, message: "全角のみで入力して下さい" }
+  validates :first_name_kana, :last_name_kana, format: { with: /\A[\p{katakana} ー－&&[^ -~｡-ﾟ]]+\z/, message: "全角カタカナのみで入力して下さい" }
+  validates :nickname, :email, :encrypted_password, :first_name, :last_name, :first_name_kana, :last_name_kana, :birthday, presence: true
 
   has_many :commodities, dependent: :delete_all
   has_many :evaluations, dependent: :delete_all

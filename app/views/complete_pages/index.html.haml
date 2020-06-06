@@ -12,14 +12,14 @@
         .circle
       %li.active--red
         完了
-        .circle
-        .progress-status
-.main.single-main
-  .l-single-container.signup-done
-    .single-head.registration 会員登録完了
-    .single-inner.registration-form
-      .single-content
-        .thankyou ありがとうございます。会員登録が完了しました。
-        .btn-default.btn-red{:href => "#"}
-          フリマをはじめる
+        .circle2
+.main-complete-pages
+  .single-head
+    会員登録完了
+  .single-content
+    .thankyou
+      ありがとうございます。会員登録が完了しました。
+    =link_to root_path, class: "btn-box" do
+      .btn-default
+        フリマをはじめる
 = render 'shared/footer'

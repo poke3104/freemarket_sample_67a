@@ -1,0 +1,48 @@
+.sighup-header
+  .header-sighup
+    =link_to root_path do
+      =image_tag "/assets/logo-d3d78326971d78b06e3d6f0ba666d025a8ad681286b4d9e00e7dbe8673bcfd23.svg", class: "logo-image"
+  %nav.development-bar
+    %ul.clearfix
+      %li.active
+        会員情報
+        .circle
+      %li.active
+        お届け先住所入力
+        .circle2
+      %li.active
+        完了
+        .circle
+.sighup-main
+  .sighup-container
+    .sighup-main-head
+      住所入力
+    .sighup-form
+      =form_with model: @address, url: {controller: "registrations", action: "create_address"}, local: true do |f|
+        = render "devise/shared/error_messages", resource: @address
+        .sighup-group
+          =f.label :post_number, '郵便番号', class: "sighup-information"
+          %span.form-require 必須
+          =f.text_field :post_number, placeholder: "例) 123-4567", class: "input-default"
+        .sighup-group
+          =f.label :prefecture_id, '都道府県', class: "sighup-information"
+          %span.form-require 必須
+          = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {}, {class: "select-default"}
+        .sighup-group
+          =f.label :city, '市町村', class: "sighup-information"
+          %span.form-require 必須
+          =f.text_field :city, placeholder: "例) 札幌市", class: "input-default"
+        .sighup-group
+          =f.label :town, '番地', class: "sighup-information"
+          %span.form-require 必須
+          =f.text_field :town, placeholder: "例) 青葉1-1-1", class: "input-default"
+        .sighup-group
+          =f.label :building, '建物名', class: "sighup-information"
+          %span.form-require__gray 任意
+          =f.text_field :building, placeholder: "例) 柳ビル103", class: "input-default"
+        .sighup-group
+          =f.label :building, '電話番号', class: "sighup-information"
+          %span.form-require__gray 任意
+          =f.text_field :phone_number, placeholder: "例) 123-4567-8910", class: "input-default"
+        =f.submit '登録する', class: "btn-red", url: "complete_pages_path"
+= render 'shared/detail-footer'

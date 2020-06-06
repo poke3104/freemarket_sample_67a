@@ -4,6 +4,8 @@ class Commodity < ApplicationRecord
   belongs_to :brand, optional: true
   belongs_to :sales_status, optional: true
   belongs_to :postage, optional: true
+  belongs_to :user, optional: true
+  belongs_to :shipping_charge, optional: true
   has_many :images, dependent: :delete_all
   has_many :commodity_categories, dependent: :delete_all
   has_many :categories, through: :Commodity_categories

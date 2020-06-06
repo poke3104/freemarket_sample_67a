@@ -1,10 +1,22 @@
 Rails.application.routes.draw do
-  # devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  }
+  devise_scope :user do
+    get 'addresses', to: 'users/registrations#new_address'
+    post 'addresses', to: 'users/registrations#create_address'
+  end
+  
   root "tops#index"
 
   resources :detail_pages, only: [:index]
-  resources :users, only:[:index]
-  resources :logout, only:[:index]
+  resources :mypages, only:[:index] do
+    collection do
+      get 'logout'
+    end
+  end
+  resources :credit,only:[:index]
   resources :credit,only:[:index,:new,:show] do
     collection do
       post 'pay', to: 'credit#pay'
@@ -25,7 +37,6 @@ Rails.application.routes.draw do
     end
   end
   resources :commodities, only: [:new, :create] do
-
     member do
       post 'pay', to: 'confirmation_pages#pay'
     end
@@ -34,11 +45,8 @@ Rails.application.routes.draw do
       get 'category_grandchildren', defaults: { format: 'json' }
     end
   end
-  # resources :exhibition, only:[:new, :create] do
-  #   collection do
-  #     get 'category_children', defaults: { format: 'json' }
-  #     get 'category_grandchildren', defaults: { format: 'json' }
-  #   end
-  # end
+  
   resources :sighup_pages, only:[:index]
+  resources :confirmation_pages, only: [:index]
+  resources :complete_pages, only: [:index]
 end

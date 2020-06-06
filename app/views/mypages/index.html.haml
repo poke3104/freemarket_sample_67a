@@ -1,0 +1,60 @@
+.header
+  = render 'shared/header'
+
+.main-background
+  .main
+    = render 'side'
+    .contend-sub
+      .my_page-user-icon
+        .my_page-user-icon-img
+          =image_tag src="aaa.jpg", height:"200",width:"700"
+          .my_page-user-icon-img-photo
+            =image_tag src="no_image_icon.png", height:"60", width:"60", class:"user_icon"
+          .my_page-user-icon-img-photo-username
+            username
+          .my_page-user-icon-img-text
+            .my_page-user-icon-img-text-a
+              評価 
+              .my_page-user-icon-img-text-a-number
+                0
+            .my_page-user-icon-img-text-b
+              出品数 
+              .my_page-user-icon-img-text-b-number
+                0
+      .info-todo-box
+        .info-todo-box-info
+          お知らせ
+        .info-todo-box-todo
+          やることリスト
+      .tab-content
+        .mypage-item-link
+          .mypage-item-link-body
+            お知らせが表示されます
+            .mypage-item-link-body-time
+              .mypage-item-link-body-time-figure
+                = icon('far', 'clock')
+              .mypage-item-link-body-time-guide
+                ○○分前
+          .mypage-item-link-figure
+            =image_tag src="icon_brand.png",width:"48"
+          .mypage-item-link-arrow
+            = icon('fas', 'chevron-right')
+        .maypage-go-list
+          .maypage-go-list-text
+            一覧をみる
+      .mypage-tab-container
+        .mypage-tab-container-title
+          購入した商品
+        .torihiki-tab-box
+          .info-todo-box-info
+            取引中
+          .info-todo-box-todo
+            過去の取引
+        .tab-content
+          .tab-content-box
+            .tab-content-box-figure
+              =image_tag src="icon_brand.png",width:"120"
+            .tab-content-box-body
+              取引中の商品はありません
+  .footer
+    = render 'shared/footer'
