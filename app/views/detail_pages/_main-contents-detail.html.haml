@@ -103,9 +103,21 @@
             =link_to "#", class: "edit-button" do
               商品の編集
           %p or
-          .edit-box__delete
-            =link_to "#", class: "delete-button" do
-              この商品を削除する
+          %button{:class => "edit-box__delete"} この商品を削除する
+          .gray-back
+          .delete-comfirmation
+            .delete-comfirmation__explanation
+              .heading
+                選択
+              .text
+                削除すると二度と復活できません。
+                %br/
+                本当に削除しますか？
+            .delete-comfirmation__button
+              %button{:class => "cancel-btn"}
+                キャンセル
+              =link_to detail_page_path(@commodity_detail.id), method: :delete, class: "delete-button" do
+                削除する
       .comment-box
         %form{:action => "#", :method => "post", :class => "comment-form"}
           %textarea{:required => "required", :name => "inputArea", :id => "comment-area"}

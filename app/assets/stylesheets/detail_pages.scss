@@ -142,7 +142,6 @@
         }
       }
       .edit-box{
-
         margin: 20px 0;
         padding: 20px 30px;
         background-color: #fff;
@@ -168,10 +167,68 @@
           line-height: 50px;
           text-align: center;
           background-color: rgb(175, 175, 175);
-          a{
-            display: block;
-            text-decoration: none;
-            color: #fff;
+          color: #fff;
+          font-size: 15px;
+          border: none;
+          cursor: pointer;
+          outline: none;
+          appearance: none;
+        }
+        .gray-back{
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          height: 120%;
+          width: 100%;
+          background-color: rgba(0, 0, 0, 0.5);
+          z-index: 3000;
+        }
+        .delete-comfirmation{
+          display: none;
+          z-index: 4000;
+          height: 300px;
+          width: 600px;
+          background-color: #fff;
+          position: fixed;
+          top: 50px;
+          left: calc(50% - 300px);
+          &__explanation{
+            text-align: center;
+            padding-top: 40px;
+            .heading{
+              font-size: 18px;
+              font-weight: bold;
+              margin-bottom: 40px;
+            }
+          }
+          &__button{
+            display: flex;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            .cancel-btn{
+              height: 60px;
+              width: 50%;
+              border: none;
+              cursor: pointer;
+              outline: none;
+              appearance: none;
+              font-size: 15px;
+              border-top: 1px solid rgb(150, 150, 150);
+            }
+            .delete-button{
+              height: 60px;
+              width: 50%;
+              border-top: 1px solid rgb(150, 150, 150);
+              border-left: 1px solid rgb(150, 150, 150);
+              font-size: 15px;
+              color: rgb(250, 57, 57);
+              text-decoration: none;
+              text-align: center;
+              line-height: 60px;
+            }
           }
         }
       }
