@@ -4,7 +4,7 @@ RSpec.describe "Exhibitions", type: :request do
 
   describe "GET /index" do
     it "returns http success" do
-      get "/exhibition/index"
+      get "/exhibition/new"
       expect(response).to have_http_status(:success)
     end
   end

@@ -1,0 +1,24 @@
+.single-container
+  .single-header
+    =link_to "#" do
+      =image_tag "/assets/logo.svg", class: "logo-image"
+  .single-main
+    .login-panel
+      .login-no-account
+        .no-account-user
+          アカウントをお持ちでない方はこちら
+        = link_to new_user_registration_path do
+          .login-submit
+            新規会員登録
+      .line
+      -# =form_with model: @user, url: user_session_path(resource_name), local: true do |f|
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .login-form-inner
+          .form-group
+            =f.email_field :email, placeholder: "メールアドレス", class: "login-input-text"
+          .form-group
+            =f.password_field :password, placeholder: "パスワード", class: "login-input-text", id: "password"
+          =f.submit 'ログイン', class: "login-submit", url: "root_path"
+          = link_to "#", class: "forget-password" do
+            パスワードをお忘れの方
+= render 'shared/detail-footer'

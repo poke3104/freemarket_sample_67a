@@ -40,7 +40,7 @@
               display:inline;
               margin-left:8px;
             }
-            select{
+            .text-form-number{
               width:131.5px;
               height:48px;
               padding-left:16px;
@@ -49,9 +49,10 @@
           }
           &-year{
             width:169.5px;
-            select{
+            .text-form-number{
               width:131.5px;
               height:48px;
+              margin-left:8px;
               padding-left:16px;
               padding-right:16px;
             }
@@ -97,7 +98,14 @@
         }
       }
       .add{
-       
+        clear:both;
+        width:100%;
+        background-color:#ea352d;
+        height:50px;
+        margin-top:47px;
+        line-height:50px;
+        text-align:center;
+        color:white;
       }
     }
   }
@@ -118,14 +126,6 @@
     padding-bottom:2px;
   }
   .text-form-number{
-    width:100%;
-    margin-top:8px;
-    padding-top:10px;
-    padding-left:16px;
-    padding-right:16px;
-    padding-bottom:8px;
-  }
-  .select{
     width:100%;
     margin-top:8px;
     padding-top:10px;
@@ -159,34 +159,4 @@
 
     }
   }
-}
-
-.credit-content-show{
-  background-color:#ffffff;
-    padding:40px;
-    text-align:center;
-    label{
-      display:block;
-    }
-    br{
-      display:block;
-    }
-    button{
-      width:100%;
-      background-color:#ea352d;
-      height:50px;
-      margin-top:47px;
-      line-height:50px;
-      text-align:center;
-      color:white;
-    }
-}
-.button{
-  width:100%;
-  background-color:#ea352d;
-  height:50px;
-  margin-top:47px;
-  line-height:50px;
-  text-align:center;
-  color:white;
 }
