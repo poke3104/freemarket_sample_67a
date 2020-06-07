@@ -1,8 +1,8 @@
+.header
+  = render 'shared/header'
 .main-background
-  .header
-    = render 'shared/header'
   .main
-    = render 'users/side'
+    = render 'mypages/side'
     .credit-content
       .credit-content-title
         クレジットカード情報入力
@@ -85,10 +85,5 @@
             .add
               #card_token
               = submit_tag "追加する", id: "token_submit", class: "button"
-            
-
-
-
-    
   .footer
     = render 'shared/footer'

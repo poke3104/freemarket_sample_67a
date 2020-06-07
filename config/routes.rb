@@ -16,8 +16,7 @@ Rails.application.routes.draw do
       get 'logout'
     end
   end
-  resources :credit,only:[:index]
-  resources :credit,only:[:index,:new,:show] do
+  resources :credit,only:[:new,:show] do
     collection do
       post 'pay', to: 'credit#pay'
       post 'delete', to: 'credit#delete'
