@@ -16,9 +16,9 @@ class PurchaseController < ApplicationController
     @commodities = Commodity.find(commodity_id: 1,sales_status_id: 1,price_id:1)
     Payjp.api_key =ENV["PAYJP_ACCESS_KEY"]
     Payjp::Charge.create(
-    :amount => 100 
+    :amount => 100,
     :customer => @set_card.customer_id, 
-    :currency => 'jpy',
+    :currency => 'jpy'
   )
   @commodities_buyer = Commodity.find(sales_status_id: 1)
   @commodities_buyer.update(sales_status_id: 1)
