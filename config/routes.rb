@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   
   root "tops#index"
 
-  resources :detail_pages, only: [:index]
+  resources :detail_pages, only: [:index, :destroy]
   resources :mypages, only:[:index] do
     collection do
       get 'logout'
