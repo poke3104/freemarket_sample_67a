@@ -44,11 +44,13 @@
             =@commodity_detail.price
           .postage
             （税込）送料込み
-        .product-box__button
-          - if @commodity_detail.sales_status.id == 2
-            売り切れました
-          - else @commodity_detail.sales_status.id == 1
-            = link_to "購入画面に進む",confirmation_pages_path(id: @commodity_detail),class:"buy-button" 
+        - if user_signed_in? && current_user.id != @commodity_detail.exhibition_commodity.id
+          .product-box__button
+            - if @commodity_detail.sales_status.id == 2
+              .buy-button
+                売り切れました
+            - else @commodity_detail.sales_status.id == 1
+              = link_to "購入画面に進む",confirmation_pages_path(id: @commodity_detail),class:"buy-button" 
         .product-box__text
           =@commodity_detail.text
         .product-box__table
@@ -98,15 +100,27 @@
             =link_to "#" do
               =icon('fa', 'flag', class: "flag-icon")
               不適切な商品の通報
-      - if user_signed_in?
+      - if user_signed_in? && current_user.id == @commodity_detail.exhibition_commodity.id
         .edit-box
           .edit-box__edit
             =link_to "#", class: "edit-button" do
               商品の編集
           %p or
-          .edit-box__delete
-            =link_to "#", class: "delete-button" do
-              この商品を削除する
+          %button{:class => "edit-box__delete"} この商品を削除する
+          .gray-back
+          .delete-comfirmation
+            .delete-comfirmation__explanation
+              .heading
+                選択
+              .text
+                削除すると二度と復活できません。
+                %br/
+                本当に削除しますか？
+            .delete-comfirmation__button
+              %button{:class => "cancel-btn"}
+                キャンセル
+              =link_to detail_page_path(@commodity_detail.id), method: :delete, class: "delete-button" do
+                削除する
       .comment-box
         %form{:action => "#", :method => "post", :class => "comment-form"}
           %textarea{:required => "required", :name => "inputArea", :id => "comment-area"}

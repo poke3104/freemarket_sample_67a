@@ -1,11 +1,22 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  }
+  devise_scope :user do
+    get 'addresses', to: 'users/registrations#new_address'
+    post 'addresses', to: 'users/registrations#create_address'
+  end
+  
   root "tops#index"
 
-  resources :detail_pages, only: [:index]
-  resources :mypages, only:[:index]
-  resources :logout, only:[:index]
-  resources :credit,only:[:index,:new,:show] do
+  resources :detail_pages, only: [:index, :destroy]
+  resources :mypages, only:[:index] do
+    collection do
+      get 'logout'
+    end
+  end
+  resources :credit,only:[:new,:show] do
     collection do
       post 'pay', to: 'credit#pay'
       post 'delete', to: 'credit#delete'
@@ -40,4 +51,6 @@ Rails.application.routes.draw do
     delete '/add' => 'likes#destroy'
   end
   resources :sighup_pages, only:[:index]
+  resources :confirmation_pages, only: [:index]
+  resources :complete_pages, only: [:index]
 end

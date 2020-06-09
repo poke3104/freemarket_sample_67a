@@ -12,8 +12,8 @@ class CreateCommodities < ActiveRecord::Migration[5.2]
       t.bigint :purchase_commodity_id,   null: false, foreign_key: { to_table: :users }
       t.bigint :brand_id,                foreign_key: true
       t.bigint :shipping_charge_id,      null: false, foreign_key: true
-      t.bigint :sales_status_id,            null: false, foreign_key: true
-      t.bigint :postage_id,                 null: false, foreign_key: true
+      t.bigint :sales_status_id,         null: false, foreign_key: true
+      t.bigint :postage_id,              null: false, foreign_key: true
       t.timestamps
     end
   end

@@ -3,14 +3,12 @@
 @import "tops.scss";
 @import "detail_pages.scss";
 @import "mypages.scss";
-@import "logout.scss";
 @import "credit.scss";
 @import "confirmation_pages.scss";
-@import "sighup_pages.scss";
+@import "devise/registrations.scss";
+@import "devise/sessions.scss";
+@import "done.scss";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import "done.scss";
 @import "exhibition.scss";
-@import "phonenumber_pages.scss";
 @import "complete_pages.scss";
-@import "login_pages.scss";
