@@ -35,5 +35,9 @@ Rails.application.routes.draw do
       get 'category_grandchildren', defaults: { format: 'json' }
     end
   end
+  resources :posts do
+    post 'add' => 'likes#create'
+    delete '/add' => 'likes#destroy'
+  end
   resources :sighup_pages, only:[:index]
 end
