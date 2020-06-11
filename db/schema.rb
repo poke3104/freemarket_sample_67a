@@ -61,15 +61,15 @@ ActiveRecord::Schema.define(version: 2020_05_12_015551) do
     t.string "price", null: false
     t.text "text", null: false
     t.string "clothe"
+    t.string "brand"
     t.string "condition", null: false
     t.string "day_to_ship", null: false
-    t.string "shipping_method", null: false
+    t.string "prefecture_id", null: false
+    t.string "shipping_charge", null: false
+    t.integer "shipping_method_id", null: false
     t.bigint "exhibition_commodity_id", null: false
-    t.bigint "purchase_commodity_id", null: false
-    t.bigint "brand_id"
-    t.bigint "shipping_charge_id", null: false
-    t.bigint "sales_status_id", null: false
-    t.bigint "postage_id", null: false
+    t.bigint "purchase_commodity_id"
+    t.bigint "sales_status_id", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
