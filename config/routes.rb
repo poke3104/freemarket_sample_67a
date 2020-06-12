@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     member do
       post 'pay', to: 'confirmation_pages#pay'
     end
+    resources :comments, only: [:create, :destroy]
   end
   resources :exhibition, only:[:new] do
     collection do

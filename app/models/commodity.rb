@@ -10,9 +10,7 @@ class Commodity < ApplicationRecord
   has_many :commodity_categories, dependent: :delete_all
   has_many :categories, through: :Commodity_categories
   has_many :likes, dependent: :delete_all
-  has_many :users, through: :likes
   has_many :comments, dependent: :delete_all
-  has_many :users, through: :comments
   belongs_to :exhibition_commodity, class_name: "User"
   belongs_to :purchase_commodity, class_name: "User"
 end

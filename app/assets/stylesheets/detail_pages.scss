@@ -211,6 +211,7 @@
             .cancel-btn{
               height: 60px;
               width: 50%;
+              background-color: #fff;
               border: none;
               cursor: pointer;
               outline: none;
@@ -221,6 +222,7 @@
             .delete-button{
               height: 60px;
               width: 50%;
+              background-color: #fff;
               border-top: 1px solid rgb(150, 150, 150);
               border-left: 1px solid rgb(150, 150, 150);
               font-size: 15px;
@@ -237,26 +239,105 @@
         margin: 10px 0;
         background-color: #fff;
         text-align: center;
-        #comment-area{
-          width: calc(100% - 20px);
-          min-height: 86px;
-          padding: 10px;
+        .comment-list{
+          padding: 20px 40px 20px 20px;
+          .current-user-name{
+            text-align: right;
+            color: mediumturquoise;
+          }
+          .current-user-text{
+            margin: 0 20px 20px;
+            display: flex;
+            position: relative;
+            display: inline-block;
+            padding: 10px;
+            text-align: left;
+            line-height: 60px;
+            min-height: 60px;
+            max-height: 200px;
+            width: 100%;
+            color: #555;
+            font-size: 16px;
+            background: #e6eefd;
+            border-radius: 15px;
+          }
+          .current-user-text:before{
+            content: "";
+            position: absolute;
+            top: 3px; 
+            right: -19px;
+            border: 8px solid transparent;
+            border-left: 18px solid #e6eefd;
+            -webkit-transform: rotate(-35deg);
+            transform: rotate(-35deg);
+          }
+          a{
+            text-decoration: none;
+            .garbage-can{
+              color: rgb(175, 175, 175);
+              position: absolute;
+              right: 20px;
+              bottom: 10px;
+              font-size: 15px;
+            }
+          }
+          .user-name{
+            text-align: left;
+          }
+          .user-text{
+            margin: 0 20px 20px;
+            display: flex;
+            position: relative;
+            display: inline-block;
+            padding: 10px;
+            text-align: left;
+            line-height: 60px;
+            min-height: 60px;
+            max-height: 200px;
+            width: 100%;
+            color: #555;
+            font-size: 16px;
+            background: #eee;
+            border-radius: 15px;
+          }
+          .user-text:before{
+            content: "";
+            display: inline-block;
+            position: absolute;
+            top: 3px; 
+            left: -19px;
+            border: 8px solid transparent;
+            border-right: 18px solid #eee;
+            -webkit-transform: rotate(35deg);
+            transform: rotate(35deg);
+          }
         }
-        .comment-note{
-          background-color: #f8f8f8;
-          font-size: 14px;
-          padding: 8px;
-          margin: 10px 0;
-          text-align: left;
-        }
-        .comment-btn{
-          width: 60%;
-          height: 54px;
-          color: #fff;
-          font-size: 18px;
-          border-radius: 100px;
-          background-color: mediumturquoise;
-          margin-top: 20px;
+        .comment-form{
+          #comment-area{
+            width: calc(100% - 20px);
+            min-height: 86px;
+            padding: 10px;
+          }
+          .comment-note{
+            background-color: #f8f8f8;
+            font-size: 14px;
+            padding: 8px;
+            margin: 10px 0;
+            text-align: left;
+          }
+          .comment-btn{
+            width: 60%;
+            height: 54px;
+            color: #fff;
+            font-size: 18px;
+            border-radius: 100px;
+            background-color: mediumturquoise;
+            margin-top: 20px;
+            position: relative;
+            appearance: none;
+            cursor: pointer;
+            border: none;
+          }
         }
       }
     }
