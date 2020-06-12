@@ -16,7 +16,7 @@ class CreditController < ApplicationController
       customer = Payjp::Customer.create(
         card: params['payjp-token']
       )
-      @card = Card.new(user_id: 1, customer_id: customer.id,card_id:customer.default_card)
+      @card = Card.new(user_id: current_user.id, customer_id: customer.id,card_id:customer.default_card)
       if @card.save
         redirect_to action: "show"
       else
@@ -40,7 +40,7 @@ class CreditController < ApplicationController
     if @set_card.blank?
       redirect_to action: "new" 
     else
-      Payjp.api_key =Rails.application.credentials.payjp[:payjp_access_key]
+      Payjp.api_key = Rails.application.credentials.payjp[:payjp_access_key]
       customer = Payjp::Customer.retrieve(@set_card.customer_id)
       @default_card_information = customer.cards.retrieve(@set_card.card_id)
     end
