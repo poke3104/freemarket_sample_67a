@@ -28,7 +28,7 @@ class CreditController < ApplicationController
   def delete 
     if @set_card.blank?
     else
-      Payjp.api_key =ENV["PAYJP_ACCESS_KEY"]
+      Payjp.api_key =Rails.application.credentials.payjp[:payjp_access_key]
       customer = Payjp::Customer.retrieve(@set_card.customer_id)
       customer.delete
       @set_card.delete
