@@ -9,7 +9,7 @@ class CreditController < ApplicationController
   end
 
   def pay
-    Payjp.api_key = Rails.application.credentials.payjp[:payjp_access_key]
+    Payjp.api_key =ENV["PAYJP_ACCESS_KEY"]
     if params['payjp-token'].blank?
       redirect_to action: "new"
     else
