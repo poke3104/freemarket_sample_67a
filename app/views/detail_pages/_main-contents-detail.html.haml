@@ -46,10 +46,10 @@
             （税込）送料込み
         - if user_signed_in? && current_user.id != @commodity_detail.exhibition_commodity.id
           .product-box__button
-            - if @commodity_detail.sales_status.id == 2
+            - if @commodity_detail.sales_status_id == 2
               .buy-button
                 売り切れました
-            - else @commodity_detail.sales_status.id == 1
+            - else @commodity_detail.sales_status_id == 1
               = link_to "購入画面に進む",confirmation_pages_path(id: @commodity_detail),class:"buy-button" 
         .product-box__text
           =@commodity_detail.text
