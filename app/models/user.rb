@@ -21,5 +21,4 @@ class User < ApplicationRecord
   has_many :purchase_commodities, dependent: :delete_all
   has_many :commodities, through: :purchase_commodities
   has_one :address, dependent: :delete
-  has_one :profile, dependent: :delete
 end
