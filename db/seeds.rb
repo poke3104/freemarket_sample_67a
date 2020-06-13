@@ -7,7 +7,7 @@ Postage.create!(
 )
 
 SalesStatus.create!(
-  status: "販売中"
+  [{status: "販売中"}, {status: "売り切れ"}]
 )
 
 ShippingCharge.create!(
