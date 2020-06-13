@@ -16,8 +16,12 @@ class CommentsController < ApplicationController
   def destroy
     commodity = Commodity.find(params[:commodity_id])
     @comment = commodity.comments.find(params[:id])
-    @comment.destroy
-    redirect_back(fallback_location: commodity_path(commodity))
+    if @comment.destroy
+      redirect_back(fallback_location: commodity_path(commodity))
+    else
+      flash[:alert] = 'コメント削除に失敗しました'
+      redirect_back(fallback_location: commodity_path(commodity))
+    end
   end
 
   private
