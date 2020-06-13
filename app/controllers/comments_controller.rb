@@ -5,8 +5,12 @@ class CommentsController < ApplicationController
     # paramsで送られてきたidから該当commodityを探す
     commodity = Commodity.find(params[:commodity_id])
     @comment = Comment.new(comment_params)
-    @comment.save
-    redirect_back(fallback_location: commodity_url(commodity.id))
+    if @comment.save
+      redirect_back(fallback_location: commodity_url(commodity.id))
+    else
+      flash[:alert] = '送信に失敗しました'
+      redirect_back(fallback_location: commodity_url(commodity.id))
+    end
   end
 
   def destroy

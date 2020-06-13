@@ -1,3 +1,10 @@
+.notifications {
+  color: $white;
+  text-align: center;
+  .alert {
+    background-color: rgb(253, 102, 1);
+  }
+}
 .header-nav{
   border-top: 1px solid;
   border-color: #eee;
