@@ -119,7 +119,7 @@
             .delete-comfirmation__button
               %button{:class => "cancel-btn"}
                 キャンセル
-              =link_to detail_page_path(@commodity.id), method: :delete, class: "delete-button" do
+              =link_to commodity_path(@commodity.id), method: :delete, class: "delete-button" do
                 削除する
       .comment-box
         .comment-list
@@ -144,7 +144,7 @@
                     =icon('fa', 'trash-alt', class: "garbage-can")
         .comment-form
           -if user_signed_in?
-            = form_with model: [@commodity, @comment], class: "comment-form" do |f|
+            = form_with model: [@commodity, @comment], class: "comment-form", local: true do |f|
               =f.text_area :text, rows: "2", id: "comment-area"
               %p.comment-note
                 相手のことを考え丁寧なコメントを心がけましょう。

@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
     commodity = Commodity.find(params[:commodity_id])
     @comment = Comment.new(comment_params)
     @comment.save
+    redirect_back(fallback_location: commodity_url(commodity.id))
   end
 
   def destroy

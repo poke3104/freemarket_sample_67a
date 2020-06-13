@@ -1,5 +1,10 @@
-class DetailPagesController < ApplicationController
+class CommoditiesController < ApplicationController
   def index
+    @commodities = Commodity.all.order(sales_status_id: "DESC", id: "ASC")
+    @last_commodities = @commodities.last(3)
+  end
+
+  def show
     @commodity = Commodity.find(params[:id])
     # コメントを表示するためデータ取得
     @comments = @commodity.comments.includes(:user).all
@@ -14,4 +19,5 @@ class DetailPagesController < ApplicationController
       render :index
     end
   end
+
 end
