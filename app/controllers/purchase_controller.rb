@@ -28,6 +28,6 @@ class PurchaseController < ApplicationController
   private
 
   def set_card
-    @set_card = Card.where(user_id: 1).first
+    @set_card = Card.where(user_id: current_user).first
   end
 end
