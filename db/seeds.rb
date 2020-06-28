@@ -1,3 +1,31 @@
+# Brand.create!(
+#   name: "hermes"
+# )
+
+# Postage.create!(
+#   price: "600"
+# )
+
+# SalesStatus.create!(
+#   status: "販売中"
+# )
+
+# ShippingCharge.create!(
+#   who: "送料込み"
+# )
+
+# Commodity.create!([
+#   {name: "product1", price: "1000", text: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", clothe: "L", condition: "新品/未使用", day_to_ship: "2~3日で発送", shipping_method: "FURIMA便", exhibition_commodity_id: "1", purchase_commodity_id: "1", brand_id: "1", shipping_charge_id: "1", sales_status_id: "1", postage_id: "1"},
+#   {name: "product2", price: "2000", text: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", clothe: "L", condition: "新品/未使用", day_to_ship: "2~3日で発送", shipping_method: "FURIMA便", exhibition_commodity_id: "1", purchase_commodity_id: "1", brand_id: "1", shipping_charge_id: "1", sales_status_id: "1", postage_id: "1"}
+# ])
+
+# Image.create!([
+#   {image: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png", commodity_id: "1"},
+#   {image: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/14/a001.png", commodity_id: "1"},
+#   {image: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/15/a003.png", commodity_id: "1"},
+#   {image: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", commodity_id: "2"},
+#   {image: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/11/a005.png", commodity_id: "2"}
+# ])
 Brand.create!(
   name: "hermes"
 )

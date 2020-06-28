@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2020_05_12_015551) do
     t.bigint "exhibition_commodity_id", null: false
     t.bigint "purchase_commodity_id"
     t.bigint "sales_status_id", default: 0, null: false
+    t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -80,8 +81,6 @@ ActiveRecord::Schema.define(version: 2020_05_12_015551) do
     t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_commodity_categories_on_category_id"
-    t.index ["commodity_id"], name: "index_commodity_categories_on_commodity_id"
   end
 
   create_table "evaluations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -109,20 +108,8 @@ ActiveRecord::Schema.define(version: 2020_05_12_015551) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "postages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "price", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "sales_statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "status", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "shipping_charges", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "who", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -149,8 +136,6 @@ ActiveRecord::Schema.define(version: 2020_05_12_015551) do
   add_foreign_key "addresses", "users"
   add_foreign_key "comments", "commodities"
   add_foreign_key "comments", "users"
-  add_foreign_key "commodity_categories", "categories"
-  add_foreign_key "commodity_categories", "commodities"
   add_foreign_key "evaluations", "users"
   add_foreign_key "images", "commodities"
   add_foreign_key "likes", "commodities"

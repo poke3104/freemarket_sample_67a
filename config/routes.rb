@@ -44,6 +44,10 @@ Rails.application.routes.draw do
       get 'done', to: 'confirmation_pages#done'
     end
   end
+  resources :commodities, only: [:new, :create] do
+    member do
+      post 'pay', to: 'confirmation_pages#pay'
+    end
 
   resources :exhibition, only:[:new] do
     collection do
@@ -51,6 +55,8 @@ Rails.application.routes.draw do
       get 'category_grandchildren', defaults: { format: 'json' }
     end
   end
+  
+  resources :sighup_pages, only:[:index]
 
   resources :confirmation_pages, only: [:index]
 
