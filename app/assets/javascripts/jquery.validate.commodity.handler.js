@@ -11,7 +11,6 @@ $(function () {
   });
 
   $.validator.addMethod('my_rule', function(value, element) {
-    console.log(value)
     // お決まりの定型文
     // 検証対象の要素にこのルールが設定されているか
     if ( this.optional( element ) ) {

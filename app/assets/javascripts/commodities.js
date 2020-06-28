@@ -1,6 +1,5 @@
 $(document).on('turbolinks:load', function(){
   $(function(){
-    console.log("発火")
     //プレビューのhtmlを定義
     function buildHTML(count) {
       var html = `<div class="preview-box" id="preview-box__${count}">
@@ -25,19 +24,16 @@ $(document).on('turbolinks:load', function(){
       var prevContent = $('.label-content').prev();
       labelWidth = (620 - $(prevContent).css('width').replace(/[^0-9]/g, ''));
       $('.label-content').css('width', labelWidth);
-      console.log("変更")
       $('input').prop('disabled', false);
     }
 
     // プレビューの追加
     $(document).on('change', '.hidden-field', function() {
       setLabel();
-      console.log("追加")
       //hidden-fieldのidの数値のみ取得
       var id = $(this).attr('id').replace(/[^0-9]/g, '');
       //labelボックスのidとforを更新
       $('.label-box').attr({id: `label-box--${id}`,for: `commodity_images_attributes_${id}_image`});
-      console.log("更新")
       //選択したfileのオブジェクトを取得
       var file = this.files[0];
       var reader = new FileReader();
@@ -50,7 +46,6 @@ $(document).on('turbolinks:load', function(){
         if ($(`#preview-box__${id}`).length == 0) {
           var count = $('.preview-box').length;
           var html = buildHTML(id);
-          console.log("追加2")
           //ラベルの直前のプレビュー群にプレビューを追加
           var prevContent = $('.label-content').prev();
           $(prevContent).append(html);
@@ -81,7 +76,6 @@ $(document).on('turbolinks:load', function(){
       var id = $(this).attr('id').replace(/[^0-9]/g, '');
       //取得したidに該当するプレビューを削除
       $(`#preview-box__${id}`).remove();
-      console.log("削除")
       //フォームの中身を削除 
       $(`#commodity_images_attributes_${id}_image`).val("");
 
@@ -203,9 +197,7 @@ $(document).on('turbolinks:load', function(){
 
 $(function(){
   $('.text-form__price-input').on('input', function(){   //リアルタイムで表示したいのでinputを使う｡入力の度にイベントが発火するようになる｡
-    console.log("手数料計算")
     var data = $('.text-form__price-input').val(); // val()でフォームのvalueを取得(数値)
-    console.log("取得")
     var profit = Math.round(data * 0.9)  // 手数料計算を行う｡dataにかけているのが0.9なのは単に引きたい手数料が10%のため｡
     var fee = (data - profit) // 入力した数値から計算結果(profit)を引く｡それが手数料となる｡
     $('.fee-price').html(fee) //  手数料の表示｡html()は追加ではなく､上書き｡入力値が変わる度に表示も変わるようにする｡
