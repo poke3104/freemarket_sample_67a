@@ -1,7 +1,11 @@
 class CommoditiesController < ApplicationController
   before_action :set_product,  only: [:edit, :update, :destroy]
 
-  
+  def index
+  @commodities = Commodity.all.order(sales_status_id: "DESC", id: "ASC")
+  @last_commodities = @commodities.last(3)
+  end
+
   def new
     @commodity = Commodity.new
     @commodity.images.new
@@ -16,13 +20,11 @@ class CommoditiesController < ApplicationController
   end
 
   def category_grandchildren
-    # binding.pry
     @category_grandchildren = Category.find_by(id: "#{params[:child_name]}").children
   end
 
   def create
     @commodity = Commodity.new(commodity_params)
-    # binding.pry
     if @commodity.save
       redirect_to root_path
     else
@@ -38,6 +40,21 @@ class CommoditiesController < ApplicationController
     end
   end
 
+  def show
+    @commodity = Commodity.find(params[:id])
+    # コメントを表示するためデータ取得
+    @comments = @commodity.comments.includes(:user).all
+    @comment = Comment.new
+  end
+
+  def destroy
+    @commodity = Commodity.find(params[:id])
+    if commodity.destroy
+      redirect_to root_path
+    else
+      render :index
+    end
+  end
 
   private
 
@@ -53,25 +70,3 @@ class CommoditiesController < ApplicationController
   
 end
 
-# def index
-#   @commodities = Commodity.all.order(sales_status_id: "DESC", id: "ASC")
-#   @last_commodities = @commodities.last(3)
-# end
-
-# def show
-#   @commodity = Commodity.find(params[:id])
-#   # コメントを表示するためデータ取得
-#   @comments = @commodity.comments.includes(:user).all
-#   @comment = Comment.new
-# end
-
-# def destroy
-#   @commodity = Commodity.find(params[:id])
-#   if commodity.destroy
-#     redirect_to root_path
-#   else
-#     render :index
-#   end
-# end
-
-# end
