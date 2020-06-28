@@ -5,7 +5,6 @@ class Commodity < ApplicationRecord
   belongs_to :categories, optional: true
   has_many :images, dependent: :delete_all
   has_many :likes, dependent: :delete_all
-  has_many :users, through: :likes
   has_many :comments, dependent: :delete_all
   has_many :users, through: :comments
   belongs_to :exhibition_commodities, class_name: "User", optional: true

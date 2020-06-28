@@ -1,3 +1,6 @@
+.notifications
+  - flash.each do |key, value|
+    = content_tag(:div, value, class: key)
 .header-nav
   %ul
     %li
@@ -28,9 +31,9 @@
     .detail-content
       .product-box
         %h2.product-box__name
-          =@commodity_detail.name
+          =@commodity.name
         .product-box__images
-          -detail_images = @commodity_detail.images.pluck(:image)
+          -detail_images = @commodity.images.pluck(:image)
           %ul
             %li
               =image_tag detail_images[0], class: "main-image"
@@ -41,45 +44,48 @@
         .product-box__price
           .product-price
             ¥
-            =@commodity_detail.price
+            =@commodity.price
           .postage
             （税込）送料込み
-        - if user_signed_in? && current_user.id != @commodity_detail.exhibition_commodity.id
+        - if user_signed_in? && current_user.id != @commodity.exhibition_commodity.id
           .product-box__button
-            =link_to confirmation_pages_path(id: @commodity_detail), class: "buy-button" do
-              購入画面に進む
+            - if @commodity.sales_status.id == 2
+              .buy-button
+                売り切れました
+            - else @commodity.sales_status.id == 1
+              = link_to "購入画面に進む",confirmation_pages_path(id: @commodity),class:"buy-button" 
         .product-box__text
-          =@commodity_detail.text
+          =@commodity.text
         .product-box__table
           %table
             %tbody
               %tr
                 %th 出品者
                 %td 
-                  =@commodity_detail.exhibition_commodity.nickname
+                  =@commodity.exhibition_commodity.nickname
               %tr
                 %th カテゴリー
                 %td
-                  -@commodity_detail.commodity_categories.each do |commodity_category|
+                  -@commodity.commodity_categories.each do |commodity_category|
                     =link_to "#" do
                       =commodity_category.category.name
                     %br/
               %tr
                 %th ブランド
                 %td
-                  =@commodity_detail.brand.name
+                  =@commodity.brand.name
               %tr
                 %th 商品のサイズ
                 %td
-                  =@commodity_detail.clothe
+                  =@commodity.clothe
               %tr
                 %th 商品の状態
                 %td
-                  =@commodity_detail.condition
+                  =@commodity.condition
               %tr
                 %th 配送料の負担
                 %td
-                  =@commodity_detail.shipping_charge.who
+                  =@commodity.shipping_charge.who
               %tr
                 %th 発送元の地域
                 %td
@@ -88,7 +94,7 @@
               %tr 
                 %th 発送日の目安
                 %td
-                  =@commodity_detail.day_to_ship
+                  =@commodity.day_to_ship
         .product-box__option
           .like-btn
             =icon('fa', 'star', class: "star-icon")
@@ -97,7 +103,7 @@
             =link_to "#" do
               =icon('fa', 'flag', class: "flag-icon")
               不適切な商品の通報
-      - if user_signed_in? && current_user.id == @commodity_detail.exhibition_commodity.id
+      - if user_signed_in? && current_user.id == @commodity.exhibition_commodity.id
         .edit-box
           .edit-box__edit
             =link_to "#", class: "edit-button" do
@@ -116,18 +122,38 @@
             .delete-comfirmation__button
               %button{:class => "cancel-btn"}
                 キャンセル
-              =link_to detail_page_path(@commodity_detail.id), method: :delete, class: "delete-button" do
+              =link_to commodity_path(@commodity.id), method: :delete, class: "delete-button" do
                 削除する
       .comment-box
-        %form{:action => "#", :method => "post", :class => "comment-form"}
-          %textarea{:required => "required", :name => "inputArea", :id => "comment-area"}
-          %p.comment-note
-            相手のことを考え丁寧なコメントを心がけましょう。
-            %br/
-            不快な言葉遣いなどは利用制限や退会処分となることがあります。
-          %button{:type => "submit", :name => "button", :class => "comment-btn"}
-            =icon('fa', 'comment', class: "comment-icon")
-            コメントする
+        .comment-list
+          -@comments.each do |comment|
+            -if @commodity.exhibition_commodity.id == comment.user_id
+              .current-user-name
+                =comment.user.nickname
+              %br/
+              .current-user-text
+                =comment.text
+                -if user_signed_in? && comment.user == current_user
+                  =link_to commodity_comment_path(commodity_id: @commodity, id: comment.id), method: :delete do
+                    =icon('fa', 'trash-alt', class: "garbage-can")
+            -else
+              .user-name
+                =comment.user.nickname
+              %br/
+              .user-text
+                =comment.text
+                -if user_signed_in? && comment.user == current_user
+                  =link_to commodity_comment_path(commodity_id: @commodity, id: comment.id), method: :delete do
+                    =icon('fa', 'trash-alt', class: "garbage-can")
+        .comment-form
+          -if user_signed_in?
+            = form_with model: [@commodity, @comment], class: "comment-form", local: true do |f|
+              =f.text_area :text, rows: "2", id: "comment-area"
+              %p.comment-note
+                相手のことを考え丁寧なコメントを心がけましょう。
+                %br/
+                不快な言葉遣いなどは利用制限や退会処分となることがあります。
+              =f.submit 'コメントする', class: "comment-btn"
       %ul.around-link
         %li
           =link_to "#" do
