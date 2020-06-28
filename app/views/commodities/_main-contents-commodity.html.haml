@@ -1,5 +1,5 @@
 .main-contents
-  = form_with model: @commodity,method: :post, local: true do |f|
+  = form_with model: @commodity,method: :post, html: { id: :commodity_form }, local: true do |f|
     .input-box
       .exhibition-image
         .exhibition-image__title
@@ -8,37 +8,28 @@
               画像
             %li.required
               必須
+              -# - if @commodity.errors.any?
+              -#   - @commodity.errors.full_messages.each do |t|
+              -#     = t
         .exhibition-image__text
-          %p
-            最大10枚までアップロードできます
-        .exhibition-image__image-box
-          .exhibition-image__image-box__image-box2
-            .exhibition-image__image-box__image-box2__image-box3
-              %ul.input-box
-                #image-box
-                  #previews
-                    - if @commodity.persisted?
-                      - @pcommodity.images.each_with_index do |image, i|
-                        = image_tag image.src.url, data: { index: i }, width: "100", height: '100'
-                  = f.fields_for :images do |image|
-                    .js-file_group{"data-index" => "#{image.index}"}
-                      = f.file_field :image, class: "input-file"
-                      %br/
-                      %span.js-remove 削除
-                    - if @commodity.persisted?
-                      = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
-                  - if @commodity.persisted?
-                    .js-file_group{"data-index" => "#{@commodity.images.count}"}
-                      = file_field_tag :image, name: "product[images_attributes][#{@commodity.images.count}][image]", class: 'js-file'
-                      .js-remove 削除
-                %li
-                  =icon("fa", "camera", class: "camera")
-                %p
-                  ドラッグアンドドロップ
-                  %br>/
-                  またはクリックしてファイルをアップロード
-      %hr
+          %p  最大5枚までアップロードできます
+        .image-box
+          .prev-content
+          .label-content
+            %label{for: "commodity_images_attributes_0_image", class: "label-box", id: "label-box--0"}
+              %pre.label-box__text 
+                =icon("fa", "camera", class: "camera") 
+                %br/
+                クリックしてファイルをアップロード
 
+          .hidden-content
+            = f.fields_for :images do |i|
+              = i.file_field :image, class: "hidden-field"
+              %input{class:"hidden-field", type: "file", name: "commodity[images_attributes][1][image]", id: "commodity_images_attributes_1_image" }
+              %input{class:"hidden-field", type: "file", name: "commodity[images_attributes][2][image]", id: "commodity_images_attributes_2_image" }
+              %input{class:"hidden-field", type: "file", name: "commodity[images_attributes][3][image]", id: "commodity_images_attributes_3_image" }
+              %input{class:"hidden-field", type: "file", name: "commodity[images_attributes][4][image]", id: "commodity_images_attributes_4_image" }
+      %hr
       .item-content
         .item-content__item-name
           %ul.item-name-title
@@ -70,7 +61,7 @@
               必須
           .item-details__category__select-box
             .item-details__category__select-box__select-area
-              =f.select :category, @category_select, {}, {name: "categoryId", class: "category-select", id: "category-parent"}
+              =f.select :category_id, @category_select, {}, {name: "commodity[category_id]", class: "category-select", id: "category-parent"}
               %svg{"aria-hidden": "true", fill: "#888888", "fill-rule": "evenodd", height: "24", viewbox: "0 0 24 24", width: "24"}
                 %path{d: "M12,15.66a1.73,1.73,0,0,1-1.2-.49L5.21,9.54a.7.7,0,0,1,1-1l5.62,5.62c.15.15.27.15.41,0L17.8,8.6a.71.71,0,0,1,1,0,.69.69,0,0,1,0,1l-5.57,5.58A1.71,1.71,0,0,1,12,15.66Z"}
         .item-details__clothe
@@ -78,7 +69,7 @@
             %li
               サイズ
             %li.required
-              必須
+              任意
           .item-details__clothe__select-box
             .item-details__clothe__select-box__select-area
               = f.select :clothe, ["XXS以下", "XS(SS)", "S", "M", "L", "XL(LL)", "2XL(3L)", "3LX(4L)", "4XL(5L)以上", "FREE SIZE"], prompt: "選択してください", class: "" 
@@ -93,8 +84,7 @@
               任意
           .item-details__brand__text-box
             .text-form
-              = f.fields_for :brands do |f|
-                = f.text_field :name, placeholder: "例）シャネル", value: "", class: "text-form__input"
+              = f.text_field :brand, placeholder: "例）シャネル", value: "", class: "text-form__input"
         .item-details__condition
           %ul.condition-title
             %li
@@ -124,8 +114,6 @@
           .delivery__shipping-payer__select-box
             .delivery__shipping-payer__select-box__select-area
               =f.select :shipping_charge,[["送料込み(出品者負担)"], ["着払い(購入者負担)"] ], prompt: "選択してください",class: ""
-              -# = f.fields_for :shipping_charges do |f|
-              -#   = f.select :who,[["送料込み(出品者負担)"], ["着払い(購入者負担)"]], prompt: "選択してください",class: ""
               %svg{"aria-hidden": "true", fill: "#888888", "fill-rule": "evenodd", height: "24", viewbox: "0 0 24 24", width: "24"}
                 %path{d: "M12,15.66a1.73,1.73,0,0,1-1.2-.49L5.21,9.54a.7.7,0,0,1,1-1l5.62,5.62c.15.15.27.15.41,0L17.8,8.6a.71.71,0,0,1,1,0,.69.69,0,0,1,0,1l-5.57,5.58A1.71,1.71,0,0,1,12,15.66Z"}
 
@@ -137,7 +125,7 @@
               必須
           .delivery__shipping_method__select-box
             .delivery__shipping_method__select-box__select-area
-              =f.select :shipping_method,[["未定"], ["らくらくメルカリ便"],["ゆうメール"],["レターパック"],["普通郵便(定形、定形外)"],["クロネコヤマト"],["ゆうパック"],["クリックポスト"],["ゆうパケット"]], prompt: "選択してください",class:""
+              = f.collection_select :shipping_method_id, ShippingMethod.all, :id, :name, prompt: "選択してください"
               %svg{"aria-hidden": "true", fill: "#888888", "fill-rule": "evenodd", height: "24", viewbox: "0 0 24 24", width: "24"}
                 %path{d: "M12,15.66a1.73,1.73,0,0,1-1.2-.49L5.21,9.54a.7.7,0,0,1,1-1l5.62,5.62c.15.15.27.15.41,0L17.8,8.6a.71.71,0,0,1,1,0,.69.69,0,0,1,0,1l-5.57,5.58A1.71,1.71,0,0,1,12,15.66Z"}
 
@@ -181,17 +169,17 @@
           %span ¥
           .price-details__selling-price__text-box
             .text-form
-              =f.number_field :price, {placeholder: "例）300円", type: "nember",class:"text-form__input"}
+              =f.text_field :price, {placeholder: "例）300円", type: "nember",class:"text-form__price-input"}
         .price-details__fee
           %p 販売手数料（10%)
-          %span.fee{"data-test": "fee-value"} —
+          .fee-price  —
         %hr
         .price-details__profit
           %p 販売利益
-          %span.fee{"data-test": "fee-value"} —
+          .profit-price —
 
       .action-btn
-        = f.submit "出品する", class: "exhibition-btn"
+        = f.submit "出品する", class: "exhibition-btn", disabled: true
         = link_to "もどる", root_path, class: "return"
 
       .Note

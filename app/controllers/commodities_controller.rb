@@ -9,8 +9,6 @@ class CommoditiesController < ApplicationController
     Category.where(ancestry: nil).each do |parent|
       @category_select << parent.name
     end 
-    @commodity.build_brand
-    # @commodity.build_shipping_charge
   end
 
   def category_children 
@@ -18,16 +16,17 @@ class CommoditiesController < ApplicationController
   end
 
   def category_grandchildren
-    @category_grandchildren = Category.find_by(name: "#{params[:child_name]}").children
+    # binding.pry
+    @category_grandchildren = Category.find_by(id: "#{params[:child_name]}").children
   end
 
   def create
-    # binding.pry
     @commodity = Commodity.new(commodity_params)
-    if @commodity.save!
+    # binding.pry
+    if @commodity.save
       redirect_to root_path
     else
-      redirect_to new_commodity_path
+      render action: :new
     end
   end
 
@@ -43,11 +42,9 @@ class CommoditiesController < ApplicationController
   private
 
   def commodity_params
-    params.require(:commodity).permit(:name, :text, :category_id, :clothe, :condition, :shipping_charge, :shipping_method, :prefecture_id, :day_to_ship, :price, :exhibition_commodity_id, brands_attributes: [:id, :name])
-    # , categories_attributes: [:id, :name]
-    #  :brand_id,, :purchase_commodities, :sales_status, :postage
-    # .merge(user_id: current_user.id) ユーザー機能実装後追加
-    # images_attributes: [:image, :_destroy, :id],
+    params.require(:commodity).permit(:name, :text, :category_id, :clothe, :brand, :condition, :shipping_charge, :shipping_method_id, 
+    :prefecture_id, :day_to_ship, :price, :sales_status_id, images_attributes: [:image, :_destroy, :id])
+    .merge(exhibition_commodity_id: current_user.id)
   end
 
   def set_item

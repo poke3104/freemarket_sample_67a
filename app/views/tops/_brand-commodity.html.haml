@@ -1,4 +1,4 @@
--if commodity.sales_status.id == 1
+-if commodity.sales_status_id == 1
   =link_to detail_pages_path(id: commodity), class: "product-list" do
     .product-list__image
       -commodity_image = commodity.images.limit(1).pluck(:image)
