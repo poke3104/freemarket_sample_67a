@@ -2,8 +2,8 @@ class CommoditiesController < ApplicationController
   before_action :set_product,  only: [:edit, :update, :destroy]
 
   def index
-  @commodities = Commodity.all.order(sales_status_id: "DESC", id: "ASC")
-  @last_commodities = @commodities.last(3)
+    @commodities = Commodity.all.order(sales_status_id: "DESC", id: "ASC")
+    @last_commodities = @commodities.last(3)
   end
 
   def new
