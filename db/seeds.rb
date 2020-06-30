@@ -1,18 +1,18 @@
-Brand.create!(
-  name: "hermes"
-)
+# Brand.create!(
+#   name: "hermes"
+# )
 
-Postage.create!(
-  price: "600"
-)
+# Postage.create!(
+#   price: "600"
+# )
 
-SalesStatus.create!(
-  [{status: "販売中"}, {status: "売り切れ"}]
-)
+# SalesStatus.create!(
+#   [{status: "販売中"}, {status: "売り切れ"}]
+# )
 
-ShippingCharge.create!(
-  who: "送料込み"
-)
+# ShippingCharge.create!(
+#   who: "送料込み"
+# )
 
 # 親階層
 lady                         = Category.create(name: "レディース")
