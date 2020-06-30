@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   
   root "commodities#index"
 
-  resources :commodities, only: [:index, :show, :destroy] do
+  resources :commodities, only: [:index, :show, :destroy, :new, :create] do
     member do
       post 'pay', to: 'confirmation_pages#pay'
     end
@@ -44,10 +44,6 @@ Rails.application.routes.draw do
       get 'done', to: 'confirmation_pages#done'
     end
   end
-  resources :commodities, only: [:new, :create] do
-    member do
-      post 'pay', to: 'confirmation_pages#pay'
-    end
 
   resources :exhibition, only:[:new] do
     collection do
