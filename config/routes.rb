@@ -14,6 +14,10 @@ Rails.application.routes.draw do
     member do
       post 'pay', to: 'confirmation_pages#pay'
     end
+    collection do
+      get 'category_children', defaults: { format: 'json' }
+      get 'category_grandchildren', defaults: { format: 'json' }
+    end
     resources :comments, only: [:create, :destroy]
   end
 
@@ -46,10 +50,7 @@ Rails.application.routes.draw do
   end
 
   resources :exhibition, only:[:new] do
-    collection do
-      get 'category_children', defaults: { format: 'json' }
-      get 'category_grandchildren', defaults: { format: 'json' }
-    end
+   
   end
   
   resources :sighup_pages, only:[:index]
