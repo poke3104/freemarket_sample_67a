@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   
   root "commodities#index"
 
-  resources :commodities, only: [:index, :show, :destroy, :new, :create] do
+  resources :commodities, only: [:index, :show, :destroy, :new, :create, :edit] do
     member do
       post 'pay', to: 'confirmation_pages#pay'
     end

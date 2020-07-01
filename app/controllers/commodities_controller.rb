@@ -32,6 +32,10 @@ class CommoditiesController < ApplicationController
     end
   end
 
+  def edit
+    @commodity = Cmmodity.find(params[:id])
+  end
+
   def update
     if @commodity.update(commodity_params)
       redirect_to root_path

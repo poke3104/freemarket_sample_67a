@@ -1,0 +1,131 @@
+.header-nav
+  %ul
+    %li
+      =link_to "#" do
+        FURIMA
+    %li
+      =icon('fa', 'angle-right')
+    %li
+      =link_to "#" do
+        メンズ
+    %li
+      =icon('fa', 'angle-right')
+    %li
+      =link_to "#" do
+        ジャケット/アウター
+    %li
+      =icon('fa', 'angle-right')
+    %li
+      =link_to "#" do
+        ノーカラージャケット
+    %li
+      =icon('fa', 'angle-right')
+    %li.current-list
+      product2
+
+.main-contents__product
+  .content-box
+    .detail-content
+      .product-box
+        %h2.product-box__name
+          =@commodity_detail.name
+        .product-box__images
+          -detail_images = @commodity_detail.images.pluck(:image)
+          %ul
+            %li
+              =image_tag detail_images[0], class: "main-image"
+            %ul
+              -detail_images.each do |image|
+                %li
+                  =image_tag image, class: "sub-images", size: "140"
+        .product-box__price
+          .product-price
+            ¥
+            =@commodity_detail.price
+          .postage
+            （税込）送料込み
+        .product-box__button
+          - if @commodity_detail.sales_status.id == 2
+            売り切れました
+          - else @commodity_detail.sales_status.id == 1
+            = link_to "購入画面に進む",confirmation_pages_path(id: @commodity_detail),class:"buy-button" 
+        .product-box__text
+          =@commodity_detail.text
+        .product-box__table
+          %table
+            %tbody
+              %tr
+                %th 出品者
+                %td 
+                  =@commodity_detail.exhibition_commodity.nickname
+              %tr
+                %th カテゴリー
+                %td
+                  -@commodity_detail.commodity_categories.each do |commodity_category|
+                    =link_to "#" do
+                      =commodity_category.category.name
+                    %br/
+              %tr
+                %th ブランド
+                %td
+                  =@commodity_detail.brand.name
+              %tr
+                %th 商品のサイズ
+                %td
+                  =@commodity_detail.clothe
+              %tr
+                %th 商品の状態
+                %td
+                  =@commodity_detail.condition
+              %tr
+                %th 配送料の負担
+                %td
+                  =@commodity_detail.shipping_charge.who
+              %tr
+                %th 発送元の地域
+                %td
+                  =link_to "#" do
+                    愛知県
+              %tr 
+                %th 発送日の目安
+                %td
+                  =@commodity_detail.day_to_ship
+        .product-box__option
+          .like-btn
+            =icon('fa', 'star', class: "star-icon")
+            お気に入り 0
+          .option-btn
+            =link_to "#" do
+              =icon('fa', 'flag', class: "flag-icon")
+              不適切な商品の通報
+      - if user_signed_in?
+        .edit-box
+          .edit-box__edit
+            =link_to edit_commodity_path(@commodity), class: "edit-button" do
+              商品の編集
+          %p or
+          .edit-box__delete
+            =link_to "#", class: "delete-button" do
+              この商品を削除する
+      .comment-box
+        %form{:action => "#", :method => "post", :class => "comment-form"}
+          %textarea{:required => "required", :name => "inputArea", :id => "comment-area"}
+          %p.comment-note
+            相手のことを考え丁寧なコメントを心がけましょう。
+            %br/
+            不快な言葉遣いなどは利用制限や退会処分となることがあります。
+          %button{:type => "submit", :name => "button", :class => "comment-btn"}
+            =icon('fa', 'comment', class: "comment-icon")
+            コメントする
+      %ul.around-link
+        %li
+          =link_to "#" do
+            =icon('fa', 'angle-left')
+            前の商品
+        %li
+          =link_to "#" do
+            後の商品
+            =icon('fa', 'angle-right')
+      .root-category
+        =link_to edit_exhibition_path(id: @commodity_detail) do
+          メンズをもっと見る
