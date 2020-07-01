@@ -46,6 +46,10 @@ class CommoditiesController < ApplicationController
 
   def show
     @commodity = Commodity.find(params[:id])
+    @exhibition = User.find(@commodity.exhibition_commodity_id)
+    @category = Category.find(@commodity.category_id)
+    @child_category = @category.parent
+    @root_category = @child_category.parent
     # コメントを表示するためデータ取得
     @comments = @commodity.comments.includes(:user).all
     @comment = Comment.new
