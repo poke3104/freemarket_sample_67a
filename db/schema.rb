@@ -64,10 +64,14 @@ ActiveRecord::Schema.define(version: 2020_05_12_015551) do
     t.integer "shipping_method_id", null: false
     t.bigint "exhibition_commodity_id", null: false
     t.bigint "purchase_commodity_id"
-    t.bigint "sales_status_id", default: 0, null: false
+    t.bigint "sales_status_id", default: 1, null: false
     t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_commodities_on_category_id"
+    t.index ["exhibition_commodity_id"], name: "index_commodities_on_exhibition_commodity_id"
+    t.index ["purchase_commodity_id"], name: "index_commodities_on_purchase_commodity_id"
+    t.index ["sales_status_id"], name: "index_commodities_on_sales_status_id"
   end
 
   create_table "evaluations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -123,6 +127,10 @@ ActiveRecord::Schema.define(version: 2020_05_12_015551) do
   add_foreign_key "addresses", "users"
   add_foreign_key "comments", "commodities"
   add_foreign_key "comments", "users"
+  add_foreign_key "commodities", "categories"
+  add_foreign_key "commodities", "sales_statuses"
+  add_foreign_key "commodities", "users", column: "exhibition_commodity_id"
+  add_foreign_key "commodities", "users", column: "purchase_commodity_id"
   add_foreign_key "evaluations", "users"
   add_foreign_key "images", "commodities"
   add_foreign_key "likes", "commodities"
