@@ -28,6 +28,10 @@ class CommoditiesController < ApplicationController
     if @commodity.save
       redirect_to root_path
     else
+      @category_select = ["選択して下さい"]
+      Category.where(ancestry: nil).each do |parent|
+        @category_select << parent.name
+    end
       render action: :new
     end
   end
@@ -71,6 +75,6 @@ class CommoditiesController < ApplicationController
   def set_item
     @commodity = Commodity.find(params[:id])
   end
-  
+
 end
 
