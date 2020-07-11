@@ -10,9 +10,11 @@ Rails.application.routes.draw do
   
   root "commodities#index"
 
-  resources :commodities, only: [:index, :show, :destroy, :new, :create] do
+  resources :commodities, only: [:index, :show, :destroy, :new, :create, :edit, :update] do
     member do
       post 'pay', to: 'confirmation_pages#pay'
+      get 'category_children', defaults: { format: 'json' }
+      get 'category_grandchildren', defaults: { format: 'json' }
     end
     collection do
       get 'category_children', defaults: { format: 'json' }

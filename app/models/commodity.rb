@@ -2,7 +2,7 @@ class Commodity < ApplicationRecord
 
   belongs_to :sales_status, optional: true
   belongs_to :user, optional: true
-  belongs_to :categories, optional: true
+  belongs_to :category, optional: true
   has_many :images, dependent: :delete_all
   has_many :likes, dependent: :delete_all
   has_many :comments, dependent: :delete_all
@@ -15,7 +15,7 @@ class Commodity < ApplicationRecord
 
   accepts_nested_attributes_for :images, allow_destroy: true
 
-  enum status: { "出品中": 0, "売却済": 1 }
+  enum status: { "出品中": 1, "売却済": 2 }
 
   validates :images, :category_id, :condition, :shipping_method_id, :shipping_charge, :day_to_ship, :prefecture_id, presence: true
   validates :name, presence: true, length: { maximum: 40 }

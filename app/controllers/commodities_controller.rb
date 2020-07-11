@@ -1,5 +1,6 @@
 class CommoditiesController < ApplicationController
-  before_action :set_product,  only: [:edit, :update, :destroy]
+  before_action :set_item,  only: [:edit, :update, :destroy]
+  before_action :set_images, only: [:edit,:update, :destroy]
 
   def index
     @commodities = Commodity.all.order(sales_status_id: "DESC", id: "ASC")
@@ -34,6 +35,28 @@ class CommoditiesController < ApplicationController
     end
       render action: :new
     end
+  end
+
+  def edit
+    @commodity.category
+    @child_category = @commodity.category.parent
+    @root_category = @child_category.parent
+    @category_root_array = Category.where(ancestry: nil).pluck(:name)
+
+    @parent_array = []
+    @parent_array << @root_category.name
+    @parent_array << @root_category.id
+
+    @category_children_array = Category.where(ancestry: @child_category.ancestry).pluck(:name)
+    @child_array = []
+    @child_array << @child_category.name
+    @child_array << @child_category.id
+
+    @category_grandchildren_array = Category.where(ancestry: @commodity.category.ancestry).pluck(:name)
+    @grandchild_array = []
+    @grandchild_array << @commodity.name
+    @grandchild_array << @commodity.id
+
   end
 
   def update
@@ -76,5 +99,9 @@ class CommoditiesController < ApplicationController
     @commodity = Commodity.find(params[:id])
   end
 
+  def set_images
+    @images = Image.where(commodity_id: params[:id])
+  end
+  
 end
 
