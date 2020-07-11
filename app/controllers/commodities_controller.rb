@@ -79,7 +79,7 @@ class CommoditiesController < ApplicationController
   end
 
   def destroy
-    @commodity = Commodity.find(params[:id])
+    commodity = Commodity.find(params[:id])
     if commodity.destroy
       redirect_to root_path
     else
