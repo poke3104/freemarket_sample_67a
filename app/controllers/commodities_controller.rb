@@ -1,5 +1,6 @@
 class CommoditiesController < ApplicationController
-  before_action :set_product,  only: [:edit, :update, :destroy]
+  before_action :set_item,  only: [:edit, :update, :destroy]
+  before_action :show_image, only: [:edit,:update, :destroy]
 
   def index
     @commodities = Commodity.all.order(sales_status_id: "DESC", id: "ASC")
@@ -33,10 +34,29 @@ class CommoditiesController < ApplicationController
   end
 
   def edit
-    @commodity = Cmmodity.find(params[:id])
+    @category = Category.find(@commodity.category_id)
+    @child_category = @category.parent
+    @root_category = @child_category.parent
+    @category_root_array = Category.where(ancestry: nil).pluck(:name)
+
+    @parent_array = []
+    @parent_array << @root_category.name
+    @parent_array << @root_category.id
+
+    @category_children_array = Category.where(ancestry: @child_category.ancestry).pluck(:name)
+    @child_array = []
+    @child_array << @child_category.name
+    @child_array << @child_category.id
+
+    @category_grandchildren_array = Category.where(ancestry: @category.ancestry).pluck(:name)
+    @grandchild_array = []
+    @grandchild_array << @category.name
+    @grandchild_array << @category.id
+
   end
 
   def update
+    # binding.pry
     if @commodity.update(commodity_params)
       redirect_to root_path
     else
@@ -48,7 +68,9 @@ class CommoditiesController < ApplicationController
     @commodity = Commodity.find(params[:id])
     @exhibition = User.find(@commodity.exhibition_commodity_id)
     @category = Category.find(@commodity.category_id)
+    # binding.pry
     @child_category = @category.parent
+    # binding.pry
     @root_category = @child_category.parent
     # コメントを表示するためデータ取得
     @comments = @commodity.comments.includes(:user).all
@@ -74,6 +96,10 @@ class CommoditiesController < ApplicationController
 
   def set_item
     @commodity = Commodity.find(params[:id])
+  end
+
+  def show_image
+    @images = Image.where(commodity_id: params[:id])
   end
   
 end

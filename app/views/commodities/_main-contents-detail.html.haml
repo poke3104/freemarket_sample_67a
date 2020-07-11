@@ -108,7 +108,7 @@
       - if user_signed_in? && current_user.id == @commodity.exhibition_commodity_id
         .edit-box
           .edit-box__edit
-            =link_to "#", class: "edit-button" do
+            =link_to edit_commodity_path(id: @commodity), class: "edit-button" do
               商品の編集
           %p or
           %button{:class => "edit-box__delete"} この商品を削除する

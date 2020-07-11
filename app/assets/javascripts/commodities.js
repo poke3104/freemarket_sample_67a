@@ -18,6 +18,29 @@ $(document).on('turbolinks:load', function(){
       return html;
     }
 
+    // 投稿編集時
+    //commodity/:i/editページへリンクした際のアクション
+    if (window.location.href.match(/\/commodities\/\d+\/edit/)){
+      //登録済み画像のプレビュー表示欄の要素を取得する
+      var prevContent = $('.label-content').prev();
+      labelWidth = (620 - $(prevContent).css('width').replace(/[^0-9]/g, ''));
+      $('.label-content').css('width', labelWidth);
+      //プレビューにidを追加
+      $('.preview-box').each(function(index, box){
+        $(box).attr('id', `preview-box__${index}`);
+      })
+      //削除ボタンにidを追加
+      $('.delete-box').each(function(index, box){
+        $(box).attr('id', `delete_btn_${index}`);
+      })
+      var count = $('.preview-box').length;
+      //プレビューが5あるときは、投稿ボックスを消しておく
+      if (count == 5) {
+        $('.label-content').hide();
+      }
+    }
+    //
+
     // ラベルのwidth操作
     function setLabel() {
       //プレビューボックスのwidthを取得し、maxから引くことでラベルのwidthを決定
@@ -32,6 +55,7 @@ $(document).on('turbolinks:load', function(){
       setLabel();
       //hidden-fieldのidの数値のみ取得
       var id = $(this).attr('id').replace(/[^0-9]/g, '');
+      console.log(id)
       //labelボックスのidとforを更新
       $('.label-box').attr({id: `label-box--${id}`,for: `commodity_images_attributes_${id}_image`});
       //選択したfileのオブジェクトを取得
@@ -57,7 +81,9 @@ $(document).on('turbolinks:load', function(){
         if (count == 5) { 
           $('.label-content').hide();
         }
-
+        if ($(`#commodity_images_attributes_${id}__destroy`)){
+          $(`#commodity_images_attributes_${id}__destroy`).prop('checked',false);
+        } 
         //ラベルのwidth操作
         setLabel();
         //ラベルのidとforの値を変更
@@ -73,12 +99,15 @@ $(document).on('turbolinks:load', function(){
       var count = $('.preview-box').length;
       setLabel(count);
       //item_images_attributes_${id}_image から${id}に入った数字のみを抽出
+      console.log(count)
       var id = $(this).attr('id').replace(/[^0-9]/g, '');
+      console.log(id)
+      console.log("こんにちわ")
       //取得したidに該当するプレビューを削除
       $(`#preview-box__${id}`).remove();
+
       //フォームの中身を削除 
       $(`#commodity_images_attributes_${id}_image`).val("");
-
       //削除時のラベル操作
       var count = $('.preview-box').length;
       //5個めが消されたらラベルを表示
@@ -91,6 +120,19 @@ $(document).on('turbolinks:load', function(){
         //削除された際に、空っぽになったfile_fieldをもう一度入力可能にする
         $('.label-box').attr({id: `label-box--${id}`,for: `commodity_images_attributes_${id}_image`});
       }
+        //投稿編集時
+        $(`#commodity_images_attributes_${id}__destroy`).prop('checked',true);
+        //5個めが消されたらラベルを表示
+        if (count == 4) {
+          $('.label-content').show();
+        }
+        setLabel();
+        //ラベルのidとforの値を変更
+        //削除したプレビューのidによって、ラベルのidを変更する
+        if(id < 5){
+          $('.label-box').attr({id: `label-box--${id}`,for: `commodity_images_attributes_${id}_image`});
+       }
+      
     });
   });
 
@@ -139,8 +181,10 @@ $(document).on('turbolinks:load', function(){
     // 親階層のカテゴリーが選択されたときの動作
     $("#category-parent").on("change", function(){
       // 親要素のバリューを取得
+      console.log("選択")
       let parentCategory = document.getElementById("category-parent").value;
       // 初期値ではないことを確認し非同期通信で”category_childrenアクション”にデータを送信
+      console.log(parentCategory)
       if(parentCategory != "選択して下さい"){
         $.ajax({
           url: "category_children",
@@ -158,6 +202,7 @@ $(document).on('turbolinks:load', function(){
           });
           appnedChildrenBox(insertHTML);
         })
+        // console.log("子要素を削除")
         .fail(function(){
           alert('カテゴリー取得に失敗しました');
         })  

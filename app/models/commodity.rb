@@ -2,7 +2,7 @@ class Commodity < ApplicationRecord
 
   belongs_to :sales_status, optional: true
   belongs_to :user, optional: true
-  belongs_to :categories, optional: true
+  belongs_to :category, optional: true
   has_many :images, dependent: :delete_all
   has_many :likes, dependent: :delete_all
   has_many :comments, dependent: :delete_all

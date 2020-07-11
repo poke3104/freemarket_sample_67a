@@ -1,5 +1,5 @@
 .main-contents
-  = form_with model: @commodity,method: :post, html: { id: :commodity_form }, local: true do |f|
+  = form_with model: @commodity,method: :put, html: { id: :commodity_form }, local: true do |f|
     .input-box
       .exhibition-image
         .exhibition-image__title
@@ -8,27 +8,34 @@
               画像
             %li.required
               必須
-              -# - if @commodity.errors.any?
-              -#   - @commodity.errors.full_messages.each do |t|
-              -#     = t
+             
         .exhibition-image__text
           %p  最大5枚までアップロードできます
         .image-box
           .prev-content
+            - @commodity.images.each do |image|
+              .preview-box
+                .upper-box
+                  = image_tag image.image.url, width: "112", height: "112", alt: "preview"
+                .lower-box
+                  .update-box
+                    %label.edit-btn 編集
+                  .delete-box
+                    .delete-btn
+                      %span 削除
           .label-content
-            %label{for: "commodity_images_attributes_0_image", class: "label-box", id: "label-box--0"}
+            = f.label :"images_attributes_#{@commodity.images.length}_image", class: "label-box", id: "label-box--#{@commodity.images.length}" do
               %pre.label-box__text 
                 =icon("fa", "camera", class: "camera") 
                 %br/
                 クリックしてファイルをアップロード
-
           .hidden-content
             = f.fields_for :images do |i|
+              
               = i.file_field :image, class: "hidden-field"
-              %input{class:"hidden-field", type: "file", name: "commodity[images_attributes][1][image]", id: "commodity_images_attributes_1_image" }
-              %input{class:"hidden-field", type: "file", name: "commodity[images_attributes][2][image]", id: "commodity_images_attributes_2_image" }
-              %input{class:"hidden-field", type: "file", name: "commodity[images_attributes][3][image]", id: "commodity_images_attributes_3_image" }
-              %input{class:"hidden-field", type: "file", name: "commodity[images_attributes][4][image]", id: "commodity_images_attributes_4_image" }
+              = i.check_box:_destroy, class: "hidden-checkbox"
+            - @commodity.images.length.upto(4) do |i|
+              %input{name: "commodity[images_attributes][#{i}][image]", id: "commodity_images_attributes_#{i}_image", class:"hidden-field", type:"file"}
       %hr
       .item-content
         .item-content__item-name
@@ -39,7 +46,7 @@
               必須
           .item-content__item-name__text-box
             .text-form
-              = f.text_field :name, placeholder: "40文字まで", value: "", class: "text-form__input"
+              = f.text_field :name, placeholder: "40文字まで", class: "text-form__input"
         .item-content__item-explanation
           %ul.explanation-title
             %li
@@ -61,9 +68,17 @@
               必須
           .item-details__category__select-box
             .item-details__category__select-box__select-area
-              =f.select :category_id, @category_select, {}, {name: "commodity[category_id]", class: "category-select", id: "category-parent"}
+              =f.collection_select :category_id, Category.roots,:name, :name, {selected: @parent_array}, name: "commodity[category_id]", class: "category-select", id: "category-parent"
               %svg{"aria-hidden": "true", fill: "#888888", "fill-rule": "evenodd", height: "24", viewbox: "0 0 24 24", width: "24"}
                 %path{d: "M12,15.66a1.73,1.73,0,0,1-1.2-.49L5.21,9.54a.7.7,0,0,1,1-1l5.62,5.62c.15.15.27.15.41,0L17.8,8.6a.71.71,0,0,1,1,0,.69.69,0,0,1,0,1l-5.57,5.58A1.71,1.71,0,0,1,12,15.66Z"}
+                .item-details__category__select-box__select-area#children-box
+                  =f.collection_select :category_id ,@commodity.category.parent.siblings, :id, :name, {selected: @child_array}, {name: "commodity[category_id]", class: "category-select", id: "children-box"}
+                  %svg{"aria-hidden": "true", fill: "#888888", "fill-rule": "evenodd", height: "24", viewbox: "0 0 24 24", width: "24"}
+                    %path{d: "M12,15.66a1.73,1.73,0,0,1-1.2-.49L5.21,9.54a.7.7,0,0,1,1-1l5.62,5.62c.15.15.27.15.41,0L17.8,8.6a.71.71,0,0,1,1,0,.69.69,0,0,1,0,1l-5.57,5.58A1.71,1.71,0,0,1,12,15.66Z"}
+                    .item-details__category__select-box__select-area#grandchildren-box
+                      =f.collection_select :category_id, @commodity.category.siblings, :id, :name, {selected:@grandchild_array}, name: "commodity[category_id]", class: "category-select", id: "grandchildren-box"
+                      %svg{"aria-hidden": "true", fill: "#888888", "fill-rule": "evenodd", height: "24", viewbox: "0 0 24 24", width: "24"}
+                        %path{d: "M12,15.66a1.73,1.73,0,0,1-1.2-.49L5.21,9.54a.7.7,0,0,1,1-1l5.62,5.62c.15.15.27.15.41,0L17.8,8.6a.71.71,0,0,1,1,0,.69.69,0,0,1,0,1l-5.57,5.58A1.71,1.71,0,0,1,12,15.66Z"}
         .item-details__clothe
           %ul.clothe-title
             %li
@@ -179,7 +194,7 @@
           .profit-price —
 
       .action-btn
-        = f.submit "出品する", class: "exhibition-btn", disabled: true
+        = f.submit "変更する", class: "exhibition-btn"
         = link_to "もどる", root_path, class: "return"
 
       .Note
