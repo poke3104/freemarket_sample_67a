@@ -60,7 +60,6 @@ class CommoditiesController < ApplicationController
   end
 
   def update
-    # binding.pry
     if @commodity.update(commodity_params)
       redirect_to root_path
     else
@@ -72,9 +71,7 @@ class CommoditiesController < ApplicationController
     @commodity = Commodity.find(params[:id])
     @exhibition = User.find(@commodity.exhibition_commodity_id)
     @category = Category.find(@commodity.category_id)
-    # binding.pry
     @child_category = @category.parent
-    # binding.pry
     @root_category = @child_category.parent
     # コメントを表示するためデータ取得
     @comments = @commodity.comments.includes(:user).all

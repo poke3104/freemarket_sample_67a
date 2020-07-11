@@ -55,7 +55,6 @@ $(document).on('turbolinks:load', function(){
       setLabel();
       //hidden-fieldのidの数値のみ取得
       var id = $(this).attr('id').replace(/[^0-9]/g, '');
-      console.log(id)
       //labelボックスのidとforを更新
       $('.label-box').attr({id: `label-box--${id}`,for: `commodity_images_attributes_${id}_image`});
       //選択したfileのオブジェクトを取得
@@ -99,10 +98,7 @@ $(document).on('turbolinks:load', function(){
       var count = $('.preview-box').length;
       setLabel(count);
       //item_images_attributes_${id}_image から${id}に入った数字のみを抽出
-      console.log(count)
       var id = $(this).attr('id').replace(/[^0-9]/g, '');
-      console.log(id)
-      console.log("こんにちわ")
       //取得したidに該当するプレビューを削除
       $(`#preview-box__${id}`).remove();
 
@@ -181,10 +177,8 @@ $(document).on('turbolinks:load', function(){
     // 親階層のカテゴリーが選択されたときの動作
     $("#category-parent").on("change", function(){
       // 親要素のバリューを取得
-      console.log("選択")
       let parentCategory = document.getElementById("category-parent").value;
       // 初期値ではないことを確認し非同期通信で”category_childrenアクション”にデータを送信
-      console.log(parentCategory)
       if(parentCategory != "選択して下さい"){
         $.ajax({
           url: "category_children",
@@ -202,7 +196,6 @@ $(document).on('turbolinks:load', function(){
           });
           appnedChildrenBox(insertHTML);
         })
-        // console.log("子要素を削除")
         .fail(function(){
           alert('カテゴリー取得に失敗しました');
         })  
