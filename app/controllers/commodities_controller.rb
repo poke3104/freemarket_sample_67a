@@ -73,6 +73,7 @@ class CommoditiesController < ApplicationController
     @category = Category.find(@commodity.category_id)
     @child_category = @category.parent
     @root_category = @child_category.parent
+    @prefecture = Prefecture.find(@commodity.prefecture_id)
     # コメントを表示するためデータ取得
     @comments = @commodity.comments.includes(:user).all
     @comment = Comment.new
