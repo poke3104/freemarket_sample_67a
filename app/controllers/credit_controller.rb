@@ -9,8 +9,7 @@ class CreditController < ApplicationController
   end
 
   def pay
-    # Payjp.api_key =Rails.application.credentials.payjp[:payjp_access_key]
-    Payjp.api_key = 'sk_test_68a20abc86387e6c7cfc8b9c'
+    Payjp.api_key =Rails.application.credentials.payjp[:payjp_access_key]
     if params['payjp-token'].blank?
       redirect_to action: "new"
     else
@@ -41,8 +40,7 @@ class CreditController < ApplicationController
     if @set_card.blank?
       redirect_to action: "new" 
     else
-      # Payjp.api_key = Rails.application.credentials.payjp[:payjp_access_key]
-      Payjp.api_key = 'sk_test_68a20abc86387e6c7cfc8b9c'
+      Payjp.api_key = Rails.application.credentials.payjp[:payjp_access_key]
       customer = Payjp::Customer.retrieve(@set_card.customer_id)
       @default_card_information = customer.cards.retrieve(@set_card.card_id)
     end
