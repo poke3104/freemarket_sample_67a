@@ -5,7 +5,7 @@
     .product
       .product-image
         -detail_images = @commodities.images.pluck(:image)
-        =image_tag detail_images[0], class:"label-image"
+        -# =image_tag detail_images[0], class:"label-image"
       .product-text
         .product-text__name
           = @commodities.name
@@ -57,4 +57,4 @@
             中田 彰都
         .buy-button
         = form_with url: pay_commodity_path(@commodities.id),method: :post, local: true do |form| 
-          = form.submit '購入する'
+          = form.submit '購入する',class: "buy-red-button"

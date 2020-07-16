@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function(){
+$(document).on('ready', function(){
   $(function(){
     //プレビューのhtmlを定義
     function buildHTML(count) {
