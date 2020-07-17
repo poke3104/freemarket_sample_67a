@@ -1,5 +1,3 @@
-$(document).on('turbolinks:load', function(){
-  $(function(){
     document.addEventListener(
       "DOMContentLoaded", e => {
         if (document.getElementById("token_submit") != null) { 
@@ -34,5 +32,3 @@ $(document).on('turbolinks:load', function(){
       },
       false
     );  
-  })
-})
