@@ -10,9 +10,15 @@ Rails.application.routes.draw do
   
   root "commodities#index"
 
-  resources :commodities, only: [:index, :show, :destroy] do
+  resources :commodities, only: [:index, :show, :destroy, :new, :create, :edit, :update] do
     member do
       post 'pay', to: 'confirmation_pages#pay'
+      get 'category_children', defaults: { format: 'json' }
+      get 'category_grandchildren', defaults: { format: 'json' }
+    end
+    collection do
+      get 'category_children', defaults: { format: 'json' }
+      get 'category_grandchildren', defaults: { format: 'json' }
     end
     resources :comments, only: [:create, :destroy]
   end
@@ -46,11 +52,10 @@ Rails.application.routes.draw do
   end
 
   resources :exhibition, only:[:new] do
-    collection do
-      get 'category_children', defaults: { format: 'json' }
-      get 'category_grandchildren', defaults: { format: 'json' }
-    end
+   
   end
+  
+  resources :sighup_pages, only:[:index]
 
   resources :confirmation_pages, only: [:index]
 

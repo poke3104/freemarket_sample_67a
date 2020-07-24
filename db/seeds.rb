@@ -1,31 +1,6 @@
-Brand.create!(
-  name: "hermes"
-)
-
-Postage.create!(
-  price: "600"
-)
-
 SalesStatus.create!(
   [{status: "販売中"}, {status: "売り切れ"}]
 )
-
-ShippingCharge.create!(
-  who: "送料込み"
-)
-
-Commodity.create!([
-  {name: "product1", price: "1000", text: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", clothe: "L", condition: "新品/未使用", day_to_ship: "2~3日で発送", shipping_method: "FURIMA便", exhibition_commodity_id: "1", purchase_commodity_id: "1", brand_id: "1", shipping_charge_id: "1", sales_status_id: "1", postage_id: "1"},
-  {name: "product2", price: "2000", text: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", clothe: "L", condition: "新品/未使用", day_to_ship: "2~3日で発送", shipping_method: "FURIMA便", exhibition_commodity_id: "1", purchase_commodity_id: "1", brand_id: "1", shipping_charge_id: "1", sales_status_id: "1", postage_id: "1"}
-])
-
-Image.create!([
-  {image: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png", commodity_id: "1"},
-  {image: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/14/a001.png", commodity_id: "1"},
-  {image: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/15/a003.png", commodity_id: "1"},
-  {image: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", commodity_id: "2"},
-  {image: "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/11/a005.png", commodity_id: "2"}
-])
 
 # 親階層
 lady                         = Category.create(name: "レディース")
@@ -103,6 +78,7 @@ men_14 = men.children.create(name: "その他")
 # 孫階層（メンズ）
 men_1.children.create([{name: "Tシャツ/カットソー(半袖/袖なし)"}, {name: "Tシャツ/カットソー(七分/長袖)"}, {name: "シャツ"}, {name: "ポロシャツ"}, {name: "タンクトップ"}, {name: "ニット/セーター"}, {name: "パーカー"}, {name: "カーディガン"}, {name: "スウェット"}, {name: "ジャージ"}, {name: "ベスト"}, {name: "その他"}])
 men_2.children.create([{name: "テーラードジャケット"}, {name: "ノーカラージャケット"}, {name: "Gジャン/デニムジャケット"}, {name: "レザージャケット"}, {name: "ダウンジャケット"}, {name: "ライダースジャケット"}, {name: "ミリタリージャケット"}, {name: "ナイロンジャケット"}, {name: "フライトジャケット"}, {name: "ダッフルコート"}, {name: "ピーコート"}, {name: "ステンカラーコート"}, {name: "トレンチコート"}, {name: "モッズコート"}, {name: "チェスターコート"}, {name: "スタジャン"}, {name: "スカジャン"}, {name: "ブルゾン"}, {name: "マウンテンパーカー"}, {name: "ダウンベスト"}, {name: "ポンチョ"}, {name: "カバーオール"}, {name: "その他"}])
+men_3.children.create([{name: "デニム/ジーンズ"},{name: "ワーカパンツ/カーゴパンツ"},{name: "スラックス"},{name: "チノパン"},{name: "ショートパンツ"},{name: "ペインターパンツ"},{name: "サルエルパンツ"},{name: "オーバーオール"},{name: "その他"}])
 men_4.children.create([{name: "スニーカー"},{name: "サンダル"},{name: "ブーツ"},{name: "モカシン"},{name: "ドレス/ビジネス"},{name: "長靴/レインシューズ"},{name: "デッキシューズ"},{name: "その他"}])
 men_5.children.create([{name: "ショルダーバッグ"},{name: "トートバッグ"},{name: "ボストンバッグ"},{name: "リュック/バックパック"},{name: "ウエストポーチ"},{name: "ボディーバッグ"},{name: "ドラムバッグ"},{name: "ビジネスバッグ"},{name: "トラベルバッグ"},{name: "メッセンジャーバッグ"},{name: "エコバッグ"},{name: "その他"}])
 men_6.children.create([{name: "スーツジャケット"},{name: "スーツベスト"},{name: "スラックス"},{name: "セットアップ"},{name: "その他"}])
@@ -113,6 +89,7 @@ men_10.children.create([{name: "腕時計(アナログ)"},{name: "腕時計(デ�
 men_11.children.create([{name: "一般水着"},{name: "スポーツ用"},{name: "アクセサリー"},{name: "その他"}])
 men_12.children.create([{name: "ソックス"},{name: "レギンス/スパッツ"},{name: "レッグウォーマー"},{name: "その他"}])
 men_13.children.create([{name: "トランクス"},{name: "ボクサーパンツ"},{name: "その他"}])
+men_14.children.create([{name: "すべて"}])
 
 # 子階層（ベビー・キッズ）
 baby_kids_1  = baby_kids.children.create(name: "ベビー服(女の子用) ~95cm")
@@ -176,6 +153,7 @@ interior_housing_accessories_9.children.create([{name: "蛍光灯/電球"},{name
 interior_housing_accessories_10.children.create([{name: "布団/毛布"},{name: "枕"},{name: "シーツ/カバー"},{name: "その他"}])
 interior_housing_accessories_11.children.create([{name: "ごみ箱"},{name: "ウェルカムボード"},{name: "オルゴール"},{name: "クッション"},{name: "クッションカバー"},{name: "スリッパラック"},{name: "ティッシュボックス"},{name: "バスケット/かご"},{name: "フォトフレーム"},{name: "マガジンラック"},{name: "モビール"},{name: "モビール"},{name: "花瓶"},{name: "灰皿"},{name: "傘立て"},{name: "小物入れ"},{name: "置時計"},{name: "掛時計/柱時計"},{name: "鏡(立て掛け式)"},{name: "鏡(壁掛け式)"},{name: "置物"},{name: "風鈴"},{name: "植物/観葉植物"},{name: "その他"}])
 interior_housing_accessories_12.children.create([{name: "正月"},{name: "成人式"},{name: "バレンタインデー"},{name: "ひな祭り"},{name: "子どもの日"},{name: "母の日"},{name: "父の日"},{name: "父の日"},{name: "サマーギフト/お中元"},{name: "夏/夏休み"},{name: "ハロウィン"},{name: "敬老の日"},{name: "七五三"},{name: "お歳暮"},{name: "クリスマス"},{name: "冬一般"},{name: "その他"}])
+interior_housing_accessories_13.children.create([{name: "すべて"}])
 
 # 子階層（本・音楽・ゲーム）
 book_music_game_1 = book_music_game.children.create(name: "本")
@@ -319,6 +297,7 @@ handmade_5.children.create([{name: "クラフト/布製品"},{name: "おもち�
 handmade_6.children.create([{name: "ファッション雑貨"},{name: "スタイ/よだれかけ"},{name: "外出用品"},{name: "ネームタグ"},{name: "その他"}])
 handmade_7.children.create([{name: "各種パーツ"},{name: "生地/糸"},{name: "型紙/パターン"},{name: "その他"}])
 handmade_8.children.create([{name: "Ingress"},{name: "クリエイターズ宇宙兄弟"},{name: "その他"},{name: "チケット"},{name: "すべて"}])
+handmade_9.children.create([{name: "すべて"}])
 
 # 子階層（チケット）
 ticket_1 = ticket.children.create(name: "音楽")
@@ -338,6 +317,7 @@ ticket_4.children.create([{name: "声優/アニメ"},{name: "キッズ/ファミ
 ticket_5.children.create([{name: "邦画"},{name: "洋画"},{name: "その他"}])
 ticket_6.children.create([{name: "遊園地/テーマパーク"},{name: "美術館/博物館"},{name: "スキー場"},{name: "ゴルフ場"},{name: "フィットネスクラブ"},{name: "プール"},{name: "ボウリング場"},{name: "水族館"},{name: "動物園"},{name: "その他"}])
 ticket_7.children.create([{name: "ショッピング"},{name: "レストラン/食事券"},{name: "フード/ドリンク券"},{name: "宿泊券"},{name: "その他"}])
+ticket_8.children.create([{name: "すべて"}])
 
 # 子階層（自動車・オートバイ）
 automobile_motorcycle_1 = automobile_motorcycle.children.create(name: "自動車本体")
@@ -375,3 +355,4 @@ others_5.children.create([{name: "タオル/バス用品"},{name: "日用品/生
 others_6.children.create([{name: "雑貨"},{name: "工芸品"},{name: "家具"},{name: "印刷物"},{name: "その他"}])
 others_7.children.create([{name: "筆記具"},{name: "ノート/メモ帳"},{name: "テープ/マスキングテープ"},{name: "カレンダー/スケジュール"},{name: "アルバム/スクラップ"},{name: "ファイル/バインダー"},{name: "はさみ/カッター"},{name: "カードホルダー/名刺管理"},{name: "のり/ホッチキス"},{name: "その他"}])
 others_8.children.create([{name: "オフィス用品一般"},{name: "オフィス家具"},{name: "店舗用品"},{name: "OA機器"},{name: "ラッピング/包装"},{name: "その他"}])
+others_9.children.create([{name: "すべて"}])

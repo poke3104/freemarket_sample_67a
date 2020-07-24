@@ -36,18 +36,18 @@
           -detail_images = @commodity.images.pluck(:image)
           %ul
             %li
-              =image_tag detail_images[0], class: "main-image"
+              =image_tag @commodity.images[0].image.url, class: "main-image"
             %ul
-              -detail_images.each do |image|
+              -@commodity.images.each do |image|
                 %li
-                  =image_tag image, class: "sub-images", size: "140"
+                  =image_tag image.image.url, class: "sub-images", size: "140"
         .product-box__price
           .product-price
             ¥
             =@commodity.price
           .postage
             （税込）送料込み
-        - if user_signed_in? && current_user.id != @commodity.exhibition_commodity.id
+        - if user_signed_in? && current_user.id != @commodity.exhibition_commodity_id
           .product-box__button
             - if @commodity.sales_status.id == 2
               .buy-button
@@ -62,18 +62,20 @@
               %tr
                 %th 出品者
                 %td 
-                  =@commodity.exhibition_commodity.nickname
+                  =@exhibition.nickname
               %tr
                 %th カテゴリー
                 %td
-                  -@commodity.commodity_categories.each do |commodity_category|
-                    =link_to "#" do
-                      =commodity_category.category.name
-                    %br/
+                  =@root_category.name
+                  %br/
+                  =@child_category.name
+                  %br/
+                  =@category.name
+                  %br/
               %tr
                 %th ブランド
                 %td
-                  =@commodity.brand.name
+                  =@commodity.brand
               %tr
                 %th 商品のサイズ
                 %td
@@ -85,12 +87,11 @@
               %tr
                 %th 配送料の負担
                 %td
-                  =@commodity.shipping_charge.who
+                  =@commodity.shipping_charge
               %tr
                 %th 発送元の地域
                 %td
-                  =link_to "#" do
-                    愛知県
+                  =@prefecture.name
               %tr 
                 %th 発送日の目安
                 %td
@@ -103,10 +104,10 @@
             =link_to "#" do
               =icon('fa', 'flag', class: "flag-icon")
               不適切な商品の通報
-      - if user_signed_in? && current_user.id == @commodity.exhibition_commodity.id
+      - if user_signed_in? && current_user.id == @commodity.exhibition_commodity_id
         .edit-box
           .edit-box__edit
-            =link_to "#", class: "edit-button" do
+            =link_to edit_commodity_path(id: @commodity), class: "edit-button" do
               商品の編集
           %p or
           %button{:class => "edit-box__delete"} この商品を削除する
@@ -127,7 +128,7 @@
       .comment-box
         .comment-list
           -@comments.each do |comment|
-            -if @commodity.exhibition_commodity.id == comment.user_id
+            -if @commodity.exhibition_commodity_id == comment.user_id
               .current-user-name
                 =comment.user.nickname
               %br/

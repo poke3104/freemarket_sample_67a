@@ -82,7 +82,10 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
-gem 'carrierwave'
 gem 'fog-aws'
+gem 'carrierwave'
+gem 'mini_magick'
+
 gem 'active_hash'
+
 gem 'payjp'
